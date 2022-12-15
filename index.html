@@ -40,20 +40,21 @@
               />
             </div>
             <div class="input-group mx-0">
-              <input
-                type="text"
-                class="form-control form-control-lg search-input"
-                placeholder="Let`s find your city"
-                aria-label="Let`s find your city"
-                aria-describedby="button-addon2"
-              />
-              <button
-                class="btn btn-outline-secondary search-btn"
-                type="button"
-                id="button-addon2"
-              >
-                Search
-              </button>
+              <form class="search-form d-flex justify-content-between w-100">
+                <input
+                  type="text"
+                  class="form-control form-control-lg search-input"
+                  placeholder="Let`s find your city"
+                  aria-label="Let`s find your city"
+                  aria-describedby="button-addon2"
+                />
+                <input
+                  class="btn btn-outline-secondary search-btn"
+                  type="submit"
+                  id="button-addon2"
+                  value="Search"
+                />
+              </form>
             </div>
           </div>
           <div class="weather px-3">
@@ -62,7 +63,10 @@
                 <div
                   class="col-4 d-flex flex-column justify-content-between weather-main"
                 >
-                  <h1 class="city-name py-3">Kherson</h1>
+                  <div class="main-info">
+                    <h1 class="city-name py-3">Kherson</h1>
+                    <h2 class="current-day-time"></h2>
+                  </div>
 
                   <img
                     src="images/sun-&-cloud.png"
@@ -71,11 +75,18 @@
                   <div
                     class="weather-info-main d-flex justify-content-center flex-column align-items-center"
                   >
-                    <p class="temp-main my-4">13° C</p>
+                    <p class="temp-main my-4">
+                      <span id="temp">13</span>°
+                      <a href="#" class="temp-celc">C</a>
+                      /
+                      <a href="#" class="temp-far">F</a>
+                    </p>
                     <p class="day-main">13/11/2022</p>
                   </div>
                 </div>
-                <div class="col-7 p-0">
+                <div
+                  class="col-7 p-0 d-flex flex-column justify-content-between"
+                >
                   <div class="weather-next d-flex p-3">
                     <img src="images/sunny.png" class="weather-img-next" />
                     <div

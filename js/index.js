@@ -41,4 +41,92 @@ function greet() {
 
 greet();
 
+function currentDate() {
+  let now = new Date();
+  let date = now.getDate();
+  let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  let month = months[now.getMonth()];
+  let year = now.getFullYear();
 
+  let mainDay = document.querySelector(".day-main");
+  mainDay.innerHTML = `${date}/${month}/${year}`;
+}
+
+currentDate();
+
+function currentTime() {
+  let now = new Date();
+  let week = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let day = week[now.getDay()];
+  let hour = now.getHours();
+  let minutes = now.getMinutes();
+
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+
+  let todayTime = document.querySelector(".current-day-time");
+  todayTime.innerHTML = `${day} ${hour}:${minutes}`;
+}
+
+currentTime();
+
+function changeCity(event) {
+  event.preventDefault();
+
+  let searchCity = document.querySelector(".search-input");
+  let city = document.querySelector(".city-name");
+  //console.log(searchCity.value);
+
+  city.innerHTML = `${searchCity.value}`;
+}
+
+let search = document.querySelector(".search-form");
+search.addEventListener("submit", changeCity);
+
+function tempFar(event) {
+  event.preventDefault();
+  let tempFar = document.querySelector(".temp-far");
+  let tempCel = document.querySelector(".temp-celc");
+  let mainTemp = document.querySelector("#temp");
+  let mainTempValue = mainTemp.firstChild.nodeValue;
+  console.log(mainTempValue);
+  //console.log(typeof mainTemp);
+  mainTempValue = (mainTempValue * 1.8 + 32).toFixed(1);
+  console.log(mainTempValue);
+
+  mainTemp.innerText = `${mainTempValue}`;
+  tempFar.classList.add("focus");
+
+  tempCel.classList.contains("focus") && tempCel.classList.remove("focus");
+}
+
+let tempFarh = document.querySelector(".temp-far");
+
+tempFarh.addEventListener("click", tempFar);
+
+function tempCel(event) {
+  event.preventDefault();
+  let tempCel = document.querySelector(".temp-celc");
+  let tempFar = document.querySelector(".temp-far");
+  let mainTemp = document.querySelector("#temp");
+  let mainTempValue = mainTemp.firstChild.nodeValue;
+  mainTempValue = Math.round((mainTempValue - 32) / 1.8);
+  console.log(mainTempValue);
+
+  mainTemp.innerHTML = `${mainTempValue}`;
+  tempCel.classList.add("focus");
+  tempFar.classList.contains("focus") && tempFar.classList.remove("focus");
+}
+
+let tempCelc = document.querySelector(".temp-celc");
+tempCelc.addEventListener("click", tempCel);
