@@ -5,6 +5,10 @@
 
 body {
   margin: 0;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
   background: linear-gradient(
     143deg,
     rgb(248, 160, 186) 0%,
