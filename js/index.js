@@ -86,8 +86,12 @@ function changeCity(event) {
   let searchCity = document.querySelector(".search-input");
   let city = document.querySelector(".city-name");
   //console.log(searchCity.value);
-
-  city.innerHTML = `${searchCity.value}`;
+  if (searchCity.value) {
+    city.innerHTML = `${searchCity.value}`;
+  } else {
+    alert("Please, enter your city!");
+    city.innerHTML = `Unknown city`;
+  }
 }
 
 let search = document.querySelector(".search-form");
