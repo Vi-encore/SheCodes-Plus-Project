@@ -1,0 +1,10 @@
+SheCodes thing 
+Todo:
+  ☐ Searchbar with WeatherAPI;
+  ☐ Changing city name by searc value;
+  ☐ Changing temp(CityName => temp value);
+  ☐ Add button 'Current Location';
+  ☐ If btn clicked => display this.city and this.temp;
+  ☐ 'catch' error status from AxiosError somehow;
+
+

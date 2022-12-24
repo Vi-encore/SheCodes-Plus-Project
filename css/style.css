@@ -1,0 +1,234 @@
+* {
+  font-family: "Source Code Pro";
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  /*background: linear-gradient(
+  /*  143deg,
+   rgb(248, 160, 186) 0%,
+   rgb(221, 249, 197) 100%
+  ); */
+}
+
+.background {
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    130deg,
+    rgb(255, 243, 246) 0%,
+    rgb(246, 253, 240) 100%
+  );
+}
+
+.circle--bg {
+  position: absolute;
+  z-index: 2;
+  top: 30px;
+  left: 30px;
+  width: 400px;
+  height: 400px;
+  background-color: rgb(226, 93, 133);
+  border-radius: 50%;
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
+  filter: blur(50px);
+}
+
+.circle--md {
+  position: absolute;
+  z-index: 2;
+  bottom: 20px;
+  left: 500px;
+  width: 300px;
+  height: 300px;
+  background-color: rgb(126, 185, 74);
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
+  filter: blur(50px);
+}
+
+.circle--sm {
+  position: absolute;
+  z-index: 2;
+  bottom: 250px;
+  right: 20px;
+  width: 250px;
+  height: 250px;
+  background-color: rgb(96, 126, 222);
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
+  filter: blur(50px);
+}
+
+.square--md {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 400px;
+  width: 150px;
+  height: 150px;
+  background-color: rgb(255, 136, 32);
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
+  filter: blur(40px);
+}
+
+.all-app {
+  position: relative;
+  z-index: 4;
+  background: linear-gradient(
+    262deg,
+    rgb(255, 255, 255) 0%,
+    rgb(234, 239, 255) 100%
+  );
+  border-radius: 10px;
+  box-shadow: 4px 4px 15px rgba(122, 122, 122, 0.4);
+}
+
+.searchbar {
+  border: 1px rgb(203, 203, 203) solid;
+  border-radius: 10px 10px 0 0;
+  background-color: rgba(33, 37, 41, 0);
+}
+
+.search--front {
+  width: 50px;
+  border-radius: 10px 0 0 0;
+  background-color: white;
+}
+
+.search-img {
+  width: 30px;
+  height: 30px;
+}
+
+.search-input {
+  border-radius: 0;
+  border: 0;
+  border-right: 1px rgb(203, 203, 203) solid;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(231, 110, 146, 0.5);
+  border-color: rgb(231, 110, 146);
+}
+
+.search-btn {
+  border-radius: 0 10px 0 0;
+  border: 0;
+  color: rgb(231, 110, 146);
+  font-weight: 700;
+  font-size: 20px;
+  transition: all 150ms ease-in-out;
+}
+
+.search-btn:hover {
+  background-color: rgb(231, 110, 146);
+  color: rgb(196, 255, 144);
+}
+
+.container-weather {
+  margin: 3% 0;
+}
+
+.weather-main {
+  margin: 0 0 0 2%;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(122, 122, 122, 0.247);
+  background-color: #d8e0ff;
+  /**border-right: 2px rgb(203, 203, 203) solid;**/
+}
+
+.city-name,
+.current-day-time {
+  font-family: "Sono";
+  font-weight: 900;
+  font-size: 32px;
+  text-align: center;
+  text-shadow: 4px 4px 15px rgba(122, 122, 122, 0.062);
+  color: rgb(249, 66, 121);
+}
+
+.current-day-time {
+  font-weight: 600;
+  font-size: 20px;
+  color: rgb(71, 17, 34);
+}
+
+.weather-img-main {
+  width: 100%;
+}
+
+.weather-img-main,
+.weather-img-next {
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.01);
+  box-shadow: 4px 4px 20px rgba(122, 122, 122, 0.116);
+}
+
+.temp-main {
+  font-weight: 900;
+  font-size: 30px;
+  border-bottom: 2px solid rgb(102, 102, 102);
+}
+
+.temp-celc,
+.temp-far {
+  text-decoration: none;
+  color: #212529;
+}
+
+.focus {
+  color: rgb(249, 66, 121);
+}
+
+.temp-celc:hover,
+.temp-far:hover,
+.temp-celc:active,
+.temp-far:active {
+  color: rgb(92, 187, 9);
+}
+
+.day-main {
+  font-weight: 600;
+  font-size: 24px;
+  color: rgb(102, 102, 102);
+}
+
+.weather-next {
+  margin: 1.5% 3% 1.5% 0;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(122, 122, 122, 0.247);
+  background-color: #d8e0ff;
+
+  /**border-collapse: collapse;
+  border: 1px solid rgb(203, 203, 203);
+  border-left: 0;
+  border-right: 0; **/
+}
+
+.weather-next:first-child {
+  margin-top: 0;
+}
+.weather-next:last-child {
+  margin-bottom: 0;
+}
+
+.weather-img-next {
+  width: 13%;
+}
+
+.temp-next {
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.day-week {
+  font-weight: 600;
+  font-size: 20px;
+}
