@@ -86,33 +86,78 @@ function changeCity(event) {
 
   let searchCity = document.querySelector(".search-input");
   let city = document.querySelector(".city-name");
-  //console.log(searchCity.value);
-  if (searchCity.value) {
-    let foundCity = searchCity.value.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
-      letter.toUpperCase()
-    );
-    city.innerHTML = `${foundCity}`;
 
+  let foundCity = searchCity.value.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+    letter.toUpperCase()
+  );
+  console.log(foundCity);
+
+  if (searchCity.value === "") {
+    city.innerHTML = `Unknown city`;
+    alert("Please, enter your city!");
+  } else if (searchCity.value) {
+    function showTemp(response) {
+      //const link = `${apiUrl}&appid=${apiKey}&units=metric`;
+      console.log(response.data.name);
+      const temp = Math.round(response.data.main.temp);
+
+      city.innerHTML = `${foundCity}`;
+      pageTemp.innerHTML = `${temp}`;
+      console.log(temp);
+    }
     const apiKey = "1266ad07b66517497b1acf79ea5a6a64";
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${foundCity}`;
+    const pageTemp = document.querySelector("#temp");
 
-    function showTemp(response) {
-      const link = `${apiUrl}&appid=${apiKey}&units=metric`;
-      console.log(response.AxiosError.response.status);
-      if (response.AxiosError.response.status > 400) {
-        alert(`Enter correct data`);
-      } else {
-        const temp = Math.round(response.data.main.temp);
-        console.log(temp);
-      }
-    }
-
-    axios.get(`${apiUrl}&appid=${apiKey}&units=metric`).then(showTemp);
-  } else {
-    alert("Please, enter your city!");
-    city.innerHTML = `Unknown city`;
+    axios
+      .get(`${apiUrl}&appid=${apiKey}&units=metric`)
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.status);
+          city.innerHTML = `Unknown city`;
+          pageTemp.innerHTML = "0";
+          alert("Please, enter your city correctly!");
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
+        //alert("Please, enter your city correctly!");
+        //city.innerHTML = `Unknown city`;
+      })
+      .then(showTemp);
   }
 }
+
+function getLocation() {
+  function myPosition(position) {
+    let lat = position.coords.latitude.toFixed(2);
+    let lon = position.coords.longitude.toFixed(2);
+    console.log(lat, lon);
+
+    const apiKey = "1266ad07b66517497b1acf79ea5a6a64";
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}`;
+
+    function changeLocation(location) {
+      const myCity = location.data.name;
+      const myTemp = Math.round(location.data.main.temp);
+
+      const city = document.querySelector(".city-name");
+      const temp = document.querySelector("#temp");
+
+      city.innerHTML = `${myCity}`;
+      temp.innerHTML = `${myTemp}`;
+    }
+
+    axios.get(`${apiUrl}&appid=${apiKey}&units=metric`).then(changeLocation);
+  }
+
+  navigator.geolocation.getCurrentPosition(myPosition);
+}
+
+let findMeBtn = document.querySelector(".find-me-wrap");
+findMeBtn.addEventListener("click", getLocation);
 
 let search = document.querySelector(".search-form");
 search.addEventListener("submit", changeCity);
@@ -123,10 +168,10 @@ function tempFar(event) {
   let tempCel = document.querySelector(".temp-celc");
   let mainTemp = document.querySelector("#temp");
   let mainTempValue = mainTemp.firstChild.nodeValue;
-  console.log(mainTempValue);
+  //console.log(mainTempValue);
   //console.log(typeof mainTemp);
   mainTempValue = (mainTempValue * 1.8 + 32).toFixed(1);
-  console.log(mainTempValue);
+  //console.log(mainTempValue);
 
   mainTemp.innerText = `${mainTempValue}`;
   tempFar.classList.add("focus");
@@ -145,7 +190,7 @@ function tempCel(event) {
   let mainTemp = document.querySelector("#temp");
   let mainTempValue = mainTemp.firstChild.nodeValue;
   mainTempValue = Math.round((mainTempValue - 32) / 1.8);
-  console.log(mainTempValue);
+  //console.log(mainTempValue);
 
   mainTemp.innerHTML = `${mainTempValue}`;
   tempCel.classList.add("focus");

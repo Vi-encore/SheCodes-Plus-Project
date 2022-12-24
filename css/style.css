@@ -154,9 +154,15 @@ body {
   color: rgb(249, 66, 121);
 }
 
+.city-name {
+  margin: 0;
+  margin-right: 1em;
+}
+
 .current-day-time {
   font-weight: 600;
   font-size: 20px;
+  margin: 0.5em;
   color: rgb(71, 17, 34);
 }
 
@@ -231,4 +237,52 @@ body {
 .day-week {
   font-weight: 600;
   font-size: 20px;
+}
+
+.city-and-find {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.find-me-wrap {
+  width: 50px;
+  height: 50px;
+  box-shadow: 4px 4px 13px rgba(122, 122, 122, 0.2);
+  background-color: #ecf0fe6d;
+  padding: 5px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 150ms ease-in-out;
+}
+
+.find-me-wrap:hover {
+  width: 55px;
+  height: 55px;
+  background-color: #f65578b8;
+  box-shadow: 4px 4px 14px rgba(122, 122, 122, 0.363);
+  
+}
+
+.find-me-wrap:active {
+  background-color: #fe1548d4;
+  box-shadow: 4px 4px 14px rgba(122, 122, 122, 0.5);
+  
+}
+
+.find-location-btn {
+  width: 50px;
+  padding: 10px;
+  transition: all 150ms ease-in-out;
+}
+
+.find-location-btn:hover,
+.find-location-btn:active {
+  filter: brightness(0) saturate(100%) invert(82%) sepia(100%) saturate(15%)
+    hue-rotate(202deg) brightness(104%) contrast(104%);
+  width: 55px;
+  padding: 10px;
 }
