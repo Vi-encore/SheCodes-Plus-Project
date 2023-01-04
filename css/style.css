@@ -13,7 +13,8 @@ html {
 }
 .background__img {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  max-height: 100vh;
   animation: kenburns-top 5s ease-in-out infinite alternate both;
 }
 
@@ -51,7 +52,7 @@ html {
   font-family: Raleway, monospace;
   font-weight: 700;
   font-size: 36px;
-  color: hsl(210deg, 64%, 57%);
+  color: #2d70b4;
   margin: 0;
   text-align: center;
   vertical-align: middle;
@@ -80,44 +81,47 @@ html {
   filter: brightness(0) saturate(100%) invert(80%) sepia(61%) saturate(5987%) hue-rotate(186deg) brightness(92%) contrast(82%) drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.4));
 }
 
-.main__search {
+.side__search {
   display: inline-block;
   width: 100%;
   position: relative;
+  z-index: 2;
+  padding: 4px 0;
   filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.2));
 }
-.main__search:after {
+.side__search:after {
   content: "";
-  background: white;
+  background: #2d70b4;
   width: 5px;
-  height: 21px;
+  height: 22px;
   position: absolute;
-  top: 27px;
+  top: 34px;
   transform: rotate(130deg);
   border-radius: 50px;
 }
-.main__search > input {
-  color: hsl(210deg, 64%, 57%);
+.side__search > input {
+  color: #2d70b4;
   font-size: 18px;
   font-family: "Open Sans", monospace;
+  font-weight: 700;
   filter: drop-shadow(-1px 1px 1.5px rgba(0, 0, 0, 0.2));
-  background: rgba(245, 245, 245, 0.2431372549);
-  width: 40px;
-  height: 40px;
+  background: rgba(245, 245, 245, 0.7882352941);
+  width: 45px;
+  height: 45px;
   padding: 15px;
-  border: solid 4px white;
+  border: solid 4px #2d70b4;
   outline: none;
   border-radius: 35px;
   transition: width 0.5s;
 }
-.main__search > input::placeholder {
-  color: #efefef;
+.side__search > input::placeholder {
+  color: rgba(45, 113, 180, 0.4745098039);
   opacity: 0;
   transition: opacity 150ms ease-out;
 }
-.main__search > input:focus::placeholder {
+.side__search > input:focus::placeholder {
   opacity: 1;
 }
-.main__search > input:focus, .main__search > input:not(:placeholder-shown) {
-  width: 98%;
+.side__search > input:focus, .side__search > input:not(:placeholder-shown) {
+  width: 60%;
 }/*# sourceMappingURL=style.css.map */
