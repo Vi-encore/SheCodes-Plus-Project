@@ -48,11 +48,13 @@
     width: 45px;
     height: 45px;
     display: block;
-    filter: grayscale(64%) brightness(200%)
-      drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.2));
 
     &:hover {
-      filter: grayscale(0%) brightness(100%)
+      // filter: grayscale(0%) brightness(100%)
+      //   drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.4));
+      filter: brightness(0) saturate(100%) invert(80%) sepia(61%)
+        saturate(5987%) hue-rotate(186deg) brightness(92%) contrast(82%)
         drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.4));
     }
   }

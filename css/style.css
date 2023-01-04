@@ -51,7 +51,7 @@ html {
   font-family: Raleway, monospace;
   font-weight: 700;
   font-size: 36px;
-  color: rgb(75, 146, 216);
+  color: hsl(210deg, 64%, 57%);
   margin: 0;
   text-align: center;
   vertical-align: middle;
@@ -74,10 +74,10 @@ html {
   width: 45px;
   height: 45px;
   display: block;
-  filter: grayscale(64%) brightness(200%) drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.2));
 }
 .main__location-ico:hover {
-  filter: grayscale(0%) brightness(100%) drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.4));
+  filter: brightness(0) saturate(100%) invert(80%) sepia(61%) saturate(5987%) hue-rotate(186deg) brightness(92%) contrast(82%) drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.4));
 }
 
 .main__search {
@@ -97,7 +97,7 @@ html {
   border-radius: 50px;
 }
 .main__search > input {
-  color: rgb(75, 146, 216);
+  color: hsl(210deg, 64%, 57%);
   font-size: 18px;
   font-family: "Open Sans", monospace;
   filter: drop-shadow(-1px 1px 1.5px rgba(0, 0, 0, 0.2));
