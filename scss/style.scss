@@ -1,6 +1,7 @@
-@import "utils/variables.scss";
-@import "utils/reset.scss";
-@import "utils/mixins.scss";
+@import "utils/variables";
+@import "utils/reset";
+@import "utils/mixins";
 
-@import "modules/bg.scss";
+@import "modules/bg";
 @import "modules/main-weather";
+@import "modules/search";

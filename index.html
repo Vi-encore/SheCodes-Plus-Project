@@ -14,6 +14,13 @@
       rel="stylesheet"
     />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- <link rel="stylesheet" href="css/normalize.css" /> -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -27,45 +34,62 @@
     <div class="background">
       <picture class="background__picture">
         <source
-          srcset="./img/winter-xs.jpg"
+          srcset="./img/autumn-xs.jpg"
           media="(max-width: 425px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/winter-sm.jpg"
+          srcset="./img/autumn-sm.jpg"
           media="(max-width: 576px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/winter-md.jpg"
+          srcset="./img/autumn-md.jpg"
           media="(max-width: 768px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/winter-lg.jpg"
+          srcset="./img/autumn-lg.jpg"
           media="(max-width: 992px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/winter-xl.jpg"
+          srcset="./img/autumn-xl.jpg"
           media="(max-width: 1200px)"
           type="image/jpg"
         />
-        <img class="background__img" src="img/winter.jpg" alt="Autumn" />
+        <img class="background__img" src="img/autumn.jpg" alt="Autumn" />
       </picture>
     </div>
     <main>
       <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12 main__weather">
         <div class="container d-flex flex-column p-3">
-          <div class="main__weather-app-name d-flex flex-row justify-content-center">
-            <img
-              src="img/cloud-sun-icon.png"
-              alt="App icon"
-              class="main__img-icon"
-            />
-            <p class="main__app-name">
-              Weather<span class="main__app-name--span">you</span>
-            </p>
+          <div
+            class="main__weather-app-name d-flex flex-row justify-content-between align-items-center"
+          >
+            <div class="main__app d-flex flex-row">
+              <img
+                src="img/cloud-sun-icon.png"
+                alt="App icon"
+                class="main__img-icon"
+              />
+              <p class="main__app-name">
+                Weather<span class="main__app-name--span">you</span>
+              </p>
+            </div>
+
+            <div class="main__location">
+              <img
+                src="img/location-icon.png"
+                alt="Your location"
+                class="main__location-ico"
+              />
+            </div>
+          </div>
+          <div class="main__search-location p-2 d-flex flex-row">
+            <div class="main__search">
+              <input type="text" placeholder="Search..." />
+            </div>
           </div>
         </div>
       </div>

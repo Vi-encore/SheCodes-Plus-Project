@@ -13,24 +13,47 @@
     @include shadow;
   }
 
+  &__app {
+    background-color: $grey-trans;
+    border-radius: 20px;
+  }
+
   &__app-name {
     font-family: Raleway, monospace;
     font-weight: 700;
     font-size: 36px;
+    color: $typed;
     margin: 0;
     text-align: center;
     vertical-align: middle;
-    padding: 16px 0.5rem 0;
+    padding: 15px 0.5rem 0;
     text-shadow: -1.3px 1.3px 0.5px rgba(0, 0, 0, 0.15);
+    padding: 5px;
 
     &--span {
       text-transform: uppercase;
       display: inline-block;
       font-weight: 900;
       color: $yellow;
+      background-color: $blue-trans;
+      padding: 5px;
+      margin: 0 3px;
+      border-radius: 20px;
+
       transition: all 200ms ease-in-out;
     }
+  }
 
-    
+  &__location-ico {
+    width: 45px;
+    height: 45px;
+    display: block;
+    filter: grayscale(64%) brightness(200%)
+      drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.2));
+
+    &:hover {
+      filter: grayscale(0%) brightness(100%)
+        drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.4));
+    }
   }
 }
