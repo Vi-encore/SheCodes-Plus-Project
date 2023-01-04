@@ -18,12 +18,43 @@
   </head>
   <body>
     <div class="background">
-      <img class="background__img" src="img/spring.jpg" alt="Autumn" />
+      <picture class="background__picture">
+        <source
+          srcset="./img/summer-xs.jpg"
+          media="(max-width: 425px)"
+          type="image/jpg"
+        />
+        <source
+          srcset="./img/summer-sm.jpg"
+          media="(max-width: 576px)"
+          type="image/jpg"
+        />
+        <source
+          srcset="./img/summer-md.jpg"
+          media="(max-width: 768px)"
+          type="image/jpg"
+        />
+        <source
+          srcset="./img/summer-lg.jpg"
+          media="(max-width: 992px)"
+          type="image/jpg"
+        />
+        <source
+          srcset="./img/summer-xl.jpg"
+          media="(max-width: 1200px)"
+          type="image/jpg"
+        />
+        <img class="background__img" src="img/summer.jpg" alt="Autumn" />
+      </picture>
     </div>
     <main>
-      <div class="container">
-        <div class="col-4 main__weather"></div>
-        <div class="col-8 side__weather"></div>
+      <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12 main__weather">
+        <div class="container d-flex">
+          <div class="main__weather-app-name d-flex flex-row"></div>
+        </div>
+      </div>
+      <div class="col-xl-8 col-lg-7 col-md-6 col-sm-12 side__weather">
+        <div class="container"></div>
       </div>
     </main>
 
