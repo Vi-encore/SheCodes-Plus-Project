@@ -1,6 +1,10 @@
 /*colors*/
 html {
-  overflow-x: hidden;
+  overflow: hidden;
+}
+
+body {
+  color: #f8f7f8;
 }
 
 .background {
@@ -37,4 +41,26 @@ html {
   height: 100vh;
   background-color: rgba(245, 245, 245, 0.5019607843);
   backdrop-filter: blur(6px);
+}
+.main__img-icon {
+  width: 70px;
+  height: 70px;
+  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.2));
+}
+.main__app-name {
+  font-family: Raleway, monospace;
+  font-weight: 700;
+  font-size: 36px;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  padding: 16px 0.5rem 0;
+  text-shadow: -1.3px 1.3px 0.5px rgba(0, 0, 0, 0.15);
+}
+.main__app-name--span {
+  text-transform: uppercase;
+  display: inline-block;
+  font-weight: 900;
+  color: rgb(255, 204, 50);
+  transition: all 200ms ease-in-out;
 }/*# sourceMappingURL=style.css.map */

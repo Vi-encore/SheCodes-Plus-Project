@@ -4,8 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
+    <title>WeatherU</title>
     <link rel="shortcut icon" href="img/app-icon.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- <link rel="stylesheet" href="css/normalize.css" /> -->
     <link
@@ -20,37 +27,46 @@
     <div class="background">
       <picture class="background__picture">
         <source
-          srcset="./img/summer-xs.jpg"
+          srcset="./img/winter-xs.jpg"
           media="(max-width: 425px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/summer-sm.jpg"
+          srcset="./img/winter-sm.jpg"
           media="(max-width: 576px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/summer-md.jpg"
+          srcset="./img/winter-md.jpg"
           media="(max-width: 768px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/summer-lg.jpg"
+          srcset="./img/winter-lg.jpg"
           media="(max-width: 992px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/summer-xl.jpg"
+          srcset="./img/winter-xl.jpg"
           media="(max-width: 1200px)"
           type="image/jpg"
         />
-        <img class="background__img" src="img/summer.jpg" alt="Autumn" />
+        <img class="background__img" src="img/winter.jpg" alt="Autumn" />
       </picture>
     </div>
     <main>
       <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12 main__weather">
-        <div class="container d-flex">
-          <div class="main__weather-app-name d-flex flex-row"></div>
+        <div class="container d-flex flex-column p-3">
+          <div class="main__weather-app-name d-flex flex-row justify-content-center">
+            <img
+              src="img/cloud-sun-icon.png"
+              alt="App icon"
+              class="main__img-icon"
+            />
+            <p class="main__app-name">
+              Weather<span class="main__app-name--span">you</span>
+            </p>
+          </div>
         </div>
       </div>
       <div class="col-xl-8 col-lg-7 col-md-6 col-sm-12 side__weather">
