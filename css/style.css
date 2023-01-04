@@ -1,6 +1,6 @@
 /*colors*/
 html {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .background {
@@ -35,6 +35,6 @@ html {
   position: relative;
   z-index: 2;
   height: 100vh;
-  background-color: hwb(300 96% 4%/0.5);
+  background-color: rgba(245, 245, 245, 0.5019607843);
   backdrop-filter: blur(6px);
 }/*# sourceMappingURL=style.css.map */
