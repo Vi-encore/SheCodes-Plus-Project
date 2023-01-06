@@ -62,10 +62,8 @@
       </picture>
     </div>
     <main class="d-flex flex-row flex-wrap">
-      <div
-        class="col-xl-4 col-lg-5 col-md-6 col-sm-12 col-12 main__weather"
-      >
-        <div class="container d-flex flex-column p-3">
+      <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12 col-12 main">
+        <div class="main__weather container d-flex flex-column p-3">
           <div
             class="main__weather-app-name d-flex flex-row justify-content-between align-items-center"
           >
@@ -92,12 +90,78 @@
             <div class="main__search">
               <input type="text" placeholder="Search..." />
             </div>
-          </div> -->
+          </div> //block for mob.vers-->
+          <div class="forecast h-100">
+            <div class="d-flex flex-column forecast-wrap h-100">
+              <!--justify-content-around-->
+              <div
+                class="forecast__main-info d-flex flex-row justify-content-between pt-3"
+              >
+                <div class="forecast__city-today">
+                  <h1 class="forecast__city">Kyiv</h1>
+                  <div class="forecast__today">
+                    <span class="forecast__today--day">Wednesday</span>,
+                    <span class="forecast__today--date">04</span>/<span
+                      class="forecast__today--month"
+                      >01</span
+                    >/<span class="forecast__today--year">2023</span>
+                  </div>
+                </div>
+                <div class="forecast__pic--wrap d-flex align-items-center">
+                  <img src="img/sun.png" alt="Sunny" class="forecast__pic" />
+                  <!--width:100px-->
+                </div>
+              </div>
+              <div class="forecast__more-info d-flex flex-column py-5 h-100">
+                <div
+                  class="forecast__descr d-flex flex-column align-items-center pb-5"
+                >
+                  <div class="forecast__today--temp d-flex flex-row">
+                    <h2 class="forecast--temp">14</h2>
+                    <p class="forecast--deg">
+                      <span class="forecast--cels">C</span>|<span
+                        class="forecast--farh"
+                        >F</span
+                      >
+                    </p>
+                  </div>
+                  <div class="forecast__descr--wrap">
+                    <h3 class="forecast__descr">clear sky</h3>
+                  </div>
+                </div>
+                <div
+                  class="forecast__detailed d-flex flex-column align-items-center"
+                >
+                  <p class="forecast__detailed--info m-1">
+                    Humidity: <span class="forecast__detailed--span">34</span>%
+                  </p>
+                  <p class="forecast__detailed--info m-1">
+                    Wind: <span class="forecast__detailed--span">3.6</span>km/h
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="created">
+            <p class="created-text">
+              This project was coded by
+              <a
+                href="https://www.linkedin.com/in/viktoria-matiushko/"
+                class="created--name"
+                target="_blank"
+                >Vi</a
+              >
+              and is
+              <a href="#" class="created--repo" target="_blank"
+                >open-sourced on GitHub</a
+              >
+              and hosted on
+              <a href="#" class="created--host" target="_blank">Netlify</a>
+            </p>
+          </div>
         </div>
       </div>
-      <div
-        class="col-xl-8 col-lg-7 col-md-6 col-sm-12 col-12 side__weather"
-      >
+      <div class="col-xl-8 col-lg-7 col-md-6 col-sm-12 col-12 side__weather">
         <div class="container">
           <div class="side__search-location p-4 d-flex flex-row">
             <div class="side__search">
