@@ -99,7 +99,7 @@ function changeCity() {
   let descriptionWeather = document.getElementById("forecast--descr");
   let currentHumidity = document.getElementById("main-humidity");
   let currentWindspeed = document.getElementById("main-windspeed");
-  let nowForecastIco = document.getElementById("forecast-ico");
+  let nowForecastIco = document.getElementById("forecast-ico-wrap");
 
   let foundCity = inputVal.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
     letter.toUpperCase()
@@ -115,7 +115,9 @@ function changeCity() {
       const currentDescription = response.data.weather[0].description;
       const humidity = response.data.main.humidity;
       const windspeed = response.data.wind.speed;
-      const forecastIco = response.data;
+      const forecastIco = response.data.weather[0].id;
+
+      beforeCelc = Math.round(response.data.main.temp);
 
       console.log(forecastIco);
       currentCity.innerHTML = `${foundCity}`;
@@ -123,6 +125,30 @@ function changeCity() {
       descriptionWeather.innerHTML = `${currentDescription}`;
       currentHumidity.innerHTML = humidity;
       currentWindspeed.innerHTML = windspeed;
+
+      forecastIco > 200 && forecastIco < 232
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-bolt forecast__pic" id="forecast-ico"></i>`)
+        : forecastIco > 300 && forecastIco < 321
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-rain forecast__pic" id="forecast-ico"></i>`)
+        : forecastIco > 500 && forecastIco < 504
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-rain forecast__pic" id="forecast-ico"></i>`)
+        : forecastIco === 511
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-snowflake forecast__pic" id="forecast-ico"></i>`)
+        : forecastIco > 520 && forecastIco < 531
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-showers-heavy forecast__pic" id="forecast-ico"></i>`)
+        : forecastIco > 600 && forecastIco < 622
+        ? (nowForecastIco.innerHTML = `<i class="fa-regular fa-snowflake forecast__pic" id="forecast-ico"></i>`)
+        : forecastIco > 701 && forecastIco < 771
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-smog forecast__pic" id="forecast-ico"></i>`)
+        : forecastIco === 781
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-tornado forecast__pic" id="forecast-ico"></i>`)
+        : forecastIco === 800
+        ? (nowForecastIco.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`)
+        : forecastIco === 801
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-sun forecast__pic" id="forecast-ico"></i>`)
+        : forecastIco > 801
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud forecast__pic" id="forecast-ico"></i>`)
+        : (nowForecastIco.innerHTML = `<i class="fa-regular fa-cloud-sun forecast__pic" id="forecast-ico"></i>`);
     }
   }
 
@@ -146,6 +172,7 @@ function changeCity() {
     })
     .then(showTemp);
 }
+let beforeCelc = 0;
 
 document.getElementById("search-input").addEventListener("keydown", (event) => {
   if (event.code === "Enter") {
@@ -153,6 +180,17 @@ document.getElementById("search-input").addEventListener("keydown", (event) => {
     changeCity();
   }
 });
+
+function getLocation() {
+  function myPosition(position) {
+    let lat = position.coords.latitude.toFixed(2);
+    let lon = position.coords.longitude.toFixed(2);
+    console.log(lat, lon);
+  }
+}
+
+let findMeBtn = document.getElementById("find-me-btn");
+findMeBtn.addEventListener("click", getLocation());
 
 /*function getLocation() {
   function myPosition(position) {
@@ -179,6 +217,41 @@ document.getElementById("search-input").addEventListener("keydown", (event) => {
 
   navigator.geolocation.getCurrentPosition(myPosition);
 }
+*/
 
-let findMeBtn = document.querySelector(".find-me-wrap");
-findMeBtn.addEventListener("click", getLocation); */
+function tempFar(event) {
+  event.preventDefault();
+  let tempFar = document.getElementById("forecast--farh");
+  let tempCel = document.getElementById("forecast--cels");
+  let mainTemp = document.getElementById("temp-main");
+  let mainTempValue = mainTemp.firstChild.nodeValue;
+  //   console.log(mainTempValue);
+  //   console.log(typeof mainTemp);
+  mainTempValue = (beforeCelc * 1.8 + 32).toFixed();
+  //console.log(mainTempValue);
+
+  mainTemp.innerText = `${mainTempValue}`;
+  tempFar.classList.add("picked");
+
+  tempCel.classList.contains("picked") && tempCel.classList.remove("picked");
+}
+
+let tempFarh = document.getElementById("forecast--farh");
+tempFarh.addEventListener("click", tempFar);
+
+function tempCel(event) {
+  event.preventDefault();
+  let tempFar = document.getElementById("forecast--farh");
+  let tempCel = document.getElementById("forecast--cels");
+  let mainTemp = document.getElementById("temp-main");
+  let mainTempValue = mainTemp.firstChild.nodeValue;
+
+  mainTempValue = beforeCelc;
+  mainTemp.innerHTML = `${mainTempValue}`;
+
+  tempCel.classList.add("picked");
+  tempFar.classList.contains("picked") && tempFar.classList.remove("picked");
+}
+
+let tempCelc = document.getElementById("forecast--cels");
+tempCelc.addEventListener("click", tempCel);
