@@ -23,6 +23,7 @@
 
   &--temp {
     font-size: 132px;
+    margin: 0;
     color: $deep-typed;
     @include hard-shadow
       //  text-shadow: 1px 1px $grey-trans, -1px -1px $black-lt;
@@ -33,7 +34,51 @@
     font-size: 42px;
     margin: 0;
     font-weight: 800;
-    
+
     @include hard-shadow;
   }
+
+  &__descr--wrap {
+    font-size: 24px;
+    font-style: italic;
+  }
+
+  &__detailed {
+    background-color: $white-grey-lt;
+    border-radius: 20px;
+    border: 3px solid $typed-trans;
+  }
+
+  &__detailed--info {
+    font-size: 18px;
+    font-style: italic;
+  }
+}
+
+.created {
+  &-text {
+    font-size: 14px;
+  }
+
+  &--name,
+  &--repo,
+  &--host {
+    font-weight: 700;
+    text-decoration: none;
+    color: $typed;
+  }
+
+  &--name:hover,
+  &--repo:hover,
+  &--host:hover,
+  &--name:active,
+  &--repo:active,
+  &--host:active {
+    color: $yellow;
+    @include shadow;
+  }
+}
+
+.open {
+  color: $deep-typed;
 }

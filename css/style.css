@@ -4,6 +4,10 @@ html {
   overflow: hidden;
 }
 
+body {
+  box-sizing: border-box;
+}
+
 .background {
   width: 100%;
   height: 100%;
@@ -148,6 +152,7 @@ html {
 }
 .forecast--temp {
   font-size: 132px;
+  margin: 0;
   color: #006ad4;
   filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
@@ -156,4 +161,34 @@ html {
   margin: 0;
   font-weight: 800;
   filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
+}
+.forecast__descr--wrap {
+  font-size: 24px;
+  font-style: italic;
+}
+.forecast__detailed {
+  background-color: rgba(245, 245, 245, 0.5019607843);
+  border-radius: 20px;
+  border: 3px solid rgba(45, 113, 180, 0.4745098039);
+}
+.forecast__detailed--info {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.created-text {
+  font-size: 14px;
+}
+.created--name, .created--repo, .created--host {
+  font-weight: 700;
+  text-decoration: none;
+  color: #206cb7;
+}
+.created--name:hover, .created--repo:hover, .created--host:hover, .created--name:active, .created--repo:active, .created--host:active {
+  color: #ffcc32;
+  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.2));
+}
+
+.open {
+  color: #006ad4;
 }/*# sourceMappingURL=style.css.map */
