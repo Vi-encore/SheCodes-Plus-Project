@@ -2,7 +2,7 @@
   position: relative;
   z-index: 2;
   height: 100vh;
-  background-color: $snow;
+  background-color: $hot;
   backdrop-filter: blur(6px);
   &__weather {
     height: 100%;
@@ -15,7 +15,7 @@
   }
 
   &__app {
-    background-color: $grey-trans;
+    // background-color: $grey-trans;
     border-radius: 20px;
   }
 

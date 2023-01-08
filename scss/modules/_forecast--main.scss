@@ -1,11 +1,16 @@
 .forecast {
   &__pic {
-    width: 200px;
-    height: 200px;
-    opacity: 30%;
-    filter: brightness(0) saturate(100%) invert(23%) sepia(80%) saturate(3%)
-      hue-rotate(314deg) brightness(93%) contrast(98%)
-      drop-shadow(4px 4px 0.5px rgb(0, 0, 0));
+    font-size: 150px;
+    color: transparent;
+background: rgb(254, 254, 254);
+-webkit-background-clip: text;
+-moz-background-clip: text;
+background-clip: text;
+@include shadow;
+// text-shadow: 0px 2px 2px rgba(10, 10, 10, 0.485);
+    // opacity: 50%;
+    // filter: brightness(0) saturate(100%) invert(0%) sepia(53%) saturate(2090%)
+    //   hue-rotate(122deg) brightness(146%) contrast(90%);
     // @include hard-shadow;
 
     &:hover {
@@ -18,7 +23,7 @@
     font-weight: 900;
     font-size: 42px;
     color: $white;
-    @include hard-shadow;
+    // @include hard-shadow;
   }
 
   &--temp,
@@ -29,7 +34,7 @@
   &--temp {
     font-size: 96px;
     margin: 0;
-    @include hard-shadow
+    // @include hard-shadow
       //  text-shadow: 1px 1px $grey-trans, -1px -1px $black-lt;
 ;
   }
@@ -39,12 +44,12 @@
     margin: 0;
     font-weight: 800;
 
-    @include hard-shadow;
+    // @include hard-shadow;
   }
 
   &__today {
     font-size: 16px;
-    @include hard-shadow;
+    // @include hard-shadow;
   }
 
   &__descr {
@@ -52,7 +57,7 @@
     font-weight: 700;
     text-transform: uppercase;
     font-family: $font-num;
-    @include hard-shadow;
+    // @include hard-shadow;
   }
 
   &__detailed--info {
@@ -60,14 +65,15 @@
     text-transform: uppercase;
     font-size: 18px;
     font-weight: 700;
-    @include hard-shadow;
+    // @include hard-shadow;
   }
 }
 
 .created {
   &-text {
-    font-size: 14px;
-    @include hard-shadow;
+    color: $white;
+    font-size: 16px;
+    // @include hard-shadow;
   }
 
   &--name,

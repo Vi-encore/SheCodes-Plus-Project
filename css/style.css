@@ -44,7 +44,7 @@ body {
   position: relative;
   z-index: 2;
   height: 100vh;
-  background-color: rgba(245, 245, 245, 0.75);
+  background-color: rgba(255, 74, 74, 0.75);
   backdrop-filter: blur(6px);
 }
 .main__weather {
@@ -56,7 +56,6 @@ body {
   filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.2));
 }
 .main__app {
-  background-color: rgba(142, 142, 142, 0.337);
   border-radius: 20px;
 }
 .main__app-name {
@@ -138,17 +137,19 @@ body {
 }
 
 .forecast__pic {
-  width: 200px;
-  height: 200px;
-  opacity: 30%;
-  filter: brightness(0) saturate(100%) invert(23%) sepia(80%) saturate(3%) hue-rotate(314deg) brightness(93%) contrast(98%) drop-shadow(4px 4px 0.5px rgb(0, 0, 0));
+  font-size: 150px;
+  color: transparent;
+  background: rgb(254, 254, 254);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.2));
 }
 .forecast__city {
   font-family: "Sofia Sans Semi Condensed", monospace;
   font-weight: 900;
   font-size: 42px;
   color: #fff;
-  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
 .forecast--temp, .forecast--deg {
   font-family: "Sofia Sans Semi Condensed", monospace;
@@ -156,36 +157,31 @@ body {
 .forecast--temp {
   font-size: 96px;
   margin: 0;
-  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
 .forecast--deg {
   font-size: 36px;
   margin: 0;
   font-weight: 800;
-  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
 .forecast__today {
   font-size: 16px;
-  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
 .forecast__descr {
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
   font-family: "Sofia Sans Semi Condensed", monospace;
-  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
 .forecast__detailed--info {
   font-family: "Sofia Sans Semi Condensed", monospace;
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 700;
-  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
 
 .created-text {
-  font-size: 14px;
-  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
+  color: #fff;
+  font-size: 16px;
 }
 .created--name, .created--repo, .created--host {
   font-weight: 700;
