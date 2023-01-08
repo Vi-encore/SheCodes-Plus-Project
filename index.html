@@ -21,6 +21,20 @@
       rel="stylesheet"
     />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:ital,wght@0,700;0,800;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- <link rel="stylesheet" href="css/normalize.css" /> -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -34,31 +48,31 @@
     <div class="background">
       <picture class="background__picture">
         <source
-          srcset="./img/autumn-xs.jpg"
+          srcset="./img/winter-xs.jpg"
           media="(max-width: 425px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/autumn-sm.jpg"
+          srcset="./img/winter-sm.jpg"
           media="(max-width: 576px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/autumn-md.jpg"
+          srcset="./img/winter-md.jpg"
           media="(max-width: 768px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/autumn-lg.jpg"
+          srcset="./img/winter-lg.jpg"
           media="(max-width: 992px)"
           type="image/jpg"
         />
         <source
-          srcset="./img/autumn-xl.jpg"
+          srcset="./img/winter-xl.jpg"
           media="(max-width: 1200px)"
           type="image/jpg"
         />
-        <img class="background__img" src="img/autumn.jpg" alt="Autumn" />
+        <img class="background__img" src="img/winter.jpg" alt="Autumn" />
       </picture>
     </div>
     <main class="d-flex flex-row flex-wrap">
@@ -98,7 +112,7 @@
                 class="forecast__main-info d-flex flex-row justify-content-between pt-3"
               >
                 <div class="forecast__city-today">
-                  <h1 class="forecast__city">Kyiv</h1>
+                  <h1 class="forecast__city m-0">Kyiv</h1>
                   <div class="forecast__today">
                     <span class="forecast__today--day">Wednesday</span>,
                     <span class="forecast__today--date">04</span>/<span
@@ -112,17 +126,21 @@
                   <!--width:100px-->
                 </div>
               </div>
-              <div class="forecast__more-info d-flex flex-column py-5 h-100">
+              <div
+                class="forecast__more-info d-flex flex-column my-5 py-5 justify-content-between"
+              >
                 <div
                   class="forecast__descr d-flex flex-column align-items-center pb-5"
                 >
                   <div class="forecast__today--temp d-flex flex-row">
                     <h2 class="forecast--temp">14</h2>
                     <p class="forecast--deg">
-                      <span class="forecast--cels">C</span>|<span
-                        class="forecast--farh"
-                        >F</span
-                      >
+                      <sup>
+                        <span class="forecast--cels">C</span>|<span
+                          class="forecast--farh"
+                          >F</span
+                        >
+                      </sup>
                     </p>
                   </div>
                   <div class="forecast__descr--wrap">

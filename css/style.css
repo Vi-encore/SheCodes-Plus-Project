@@ -1,4 +1,5 @@
 /*colors*/
+/*font*/
 html {
   overflow: hidden;
 }
@@ -55,7 +56,7 @@ html {
   font-family: Raleway, monospace;
   font-weight: 700;
   font-size: 36px;
-  color: #2d70b4;
+  color: #206cb7;
   margin: 0;
   text-align: center;
   vertical-align: middle;
@@ -81,7 +82,7 @@ html {
   filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.2));
 }
 .main__location-ico:hover {
-  filter: brightness(0) saturate(100%) invert(80%) sepia(61%) saturate(5987%) hue-rotate(186deg) brightness(92%) contrast(82%) drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.4));
+  filter: brightness(0) saturate(100%) invert(21%) sepia(86%) saturate(5298%) hue-rotate(200deg) brightness(100%) contrast(100%) drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.3));
 }
 
 .side__search {
@@ -94,7 +95,7 @@ html {
 }
 .side__search:after {
   content: "";
-  background: #2d70b4;
+  background: #206cb7;
   width: 5px;
   height: 22px;
   position: absolute;
@@ -103,7 +104,7 @@ html {
   border-radius: 50px;
 }
 .side__search > input {
-  color: #2d70b4;
+  color: #206cb7;
   font-size: 18px;
   font-family: "Open Sans", monospace;
   font-weight: 700;
@@ -112,7 +113,7 @@ html {
   width: 45px;
   height: 45px;
   padding: 15px;
-  border: solid 4px #2d70b4;
+  border: solid 4px #206cb7;
   outline: none;
   border-radius: 35px;
   transition: width 0.5s;
@@ -130,7 +131,29 @@ html {
 }
 
 .forecast__pic {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
+}
+.forecast__pic:hover {
+  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.6));
+}
+.forecast__city {
+  font-family: "Rubik", monospace;
+  font-weight: 700;
+  font-size: 42px;
+}
+.forecast--temp, .forecast--deg {
+  font-family: "Sofia Sans Semi Condensed", monospace;
+}
+.forecast--temp {
+  font-size: 132px;
+  color: #006ad4;
+  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
+}
+.forecast--deg {
+  font-size: 42px;
+  margin: 0;
+  font-weight: 800;
   filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }/*# sourceMappingURL=style.css.map */

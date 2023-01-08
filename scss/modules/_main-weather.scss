@@ -54,9 +54,7 @@
     &:hover {
       // filter: grayscale(0%) brightness(100%)
       //   drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.4));
-      filter: brightness(0) saturate(100%) invert(80%) sepia(61%)
-        saturate(5987%) hue-rotate(186deg) brightness(92%) contrast(82%)
-        drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.4));
+     filter: brightness(0) saturate(100%) invert(21%) sepia(86%) saturate(5298%) hue-rotate(200deg) brightness(100%) contrast(100%) drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.3));
     }
   }
 }

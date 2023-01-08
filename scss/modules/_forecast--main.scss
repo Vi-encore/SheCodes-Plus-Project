@@ -1,10 +1,39 @@
 .forecast {
-  
-    &__pic {
-        width: 50px;
-        height: 50px;
-        @include hard-shadow;
+  &__pic {
+    width: 60px;
+    height: 60px;
+
+    @include hard-shadow;
+
+    &:hover {
+      filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.6));
     }
-  
-  
+  }
+
+  &__city {
+    font-family: $accent-font;
+    font-weight: 700;
+    font-size: 42px;
+  }
+
+  &--temp,
+  &--deg {
+    font-family: $font-num;
+  }
+
+  &--temp {
+    font-size: 132px;
+    color: $deep-typed;
+    @include hard-shadow
+      //  text-shadow: 1px 1px $grey-trans, -1px -1px $black-lt;
+;
+  }
+
+  &--deg {
+    font-size: 42px;
+    margin: 0;
+    font-weight: 800;
+    
+    @include hard-shadow;
+  }
 }
