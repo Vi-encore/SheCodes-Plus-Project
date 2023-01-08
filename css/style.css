@@ -44,7 +44,7 @@ body {
   position: relative;
   z-index: 2;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.119);
+  background-color: rgba(0, 0, 0, 0.17);
   backdrop-filter: blur(10px);
 }
 .main__weather {

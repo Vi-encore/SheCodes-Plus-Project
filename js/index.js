@@ -27,6 +27,7 @@ let days = [
 let day = date.getDay();
 let month = date.getMonth();
 let year = date.getFullYear();
+let hours = date.getHours();
 // console.log(typeof month);
 
 function changeBg() {
@@ -143,18 +144,24 @@ function changeCity() {
         : forecastIco === 781
         ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-tornado forecast__pic" id="forecast-ico"></i>`)
         : forecastIco === 800
-        ? (nowForecastIco.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`)
+        ? hours > 19 || hours < 5
+          ? (nowForecastIco.innerHTML = `<i class="fa-regular fa-moon forecast__pic" id="forecast-ico"></i>`)
+          : (nowForecastIco.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`)
         : forecastIco === 801
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-sun forecast__pic" id="forecast-ico"></i>`)
+        ? hours > 19 || hours < 5
+          ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-moon forecast__pic" id="forecast-ico"></i>`)
+          : (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-sun forecast__pic" id="forecast-ico"></i>`)
         : forecastIco > 801
         ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud forecast__pic" id="forecast-ico"></i>`)
-        : (nowForecastIco.innerHTML = `<i class="fa-regular fa-cloud-sun forecast__pic" id="forecast-ico"></i>`);
+        : (nowForecastIco.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`);
     }
   }
 
   let apiKey = "a061ec7844e88361e25c005f78e2639f";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${foundCity}`;
 
+  let city = document.getElementById("city-name");
+  let temp = document.getElementById("temp-main");
   axios
     .get(`${apiUrl}&appid=${apiKey}&units=metric`)
     .catch((error) => {
@@ -186,30 +193,65 @@ function getLocation() {
     let lat = position.coords.latitude.toFixed(2);
     let lon = position.coords.longitude.toFixed(2);
     console.log(lat, lon);
-  }
-}
 
-let findMeBtn = document.getElementById("find-me-btn");
-findMeBtn.addEventListener("click", getLocation());
-
-/*function getLocation() {
-  function myPosition(position) {
-    let lat = position.coords.latitude.toFixed(2);
-    let lon = position.coords.longitude.toFixed(2);
-    console.log(lat, lon);
-
-    const apiKey = "1266ad07b66517497b1acf79ea5a6a64";
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}`;
+    let apiKey = "a061ec7844e88361e25c005f78e2639f";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}`;
 
     function changeLocation(location) {
-      const myCity = location.data.name;
-      const myTemp = Math.round(location.data.main.temp);
+      beforeCelc = Math.round(location.data.main.temp);
+      let myCity = location.data.name;
+      let currentCity = document.getElementById("city-name");
 
-      const city = document.querySelector(".city-name");
-      const temp = document.querySelector("#temp");
+      currentCity.innerHTML = myCity;
 
-      city.innerHTML = `${myCity}`;
-      temp.innerHTML = `${myTemp}`;
+      let myTemp = Math.round(location.data.main.temp);
+      let currentTemp = document.getElementById("temp-main");
+
+      currentTemp.innerHTML = myTemp;
+
+      let descriptionWeather = document.getElementById("forecast--descr");
+      let humidity = document.getElementById("main-humidity");
+      let windspeed = document.getElementById("main-windspeed");
+      let nowForecastIco = document.getElementById("forecast-ico-wrap");
+
+      let currentDescription = location.data.weather[0].description;
+      let currentHumidity = location.data.main.humidity;
+      let currentWindspeed = location.data.wind.speed;
+      let forecastIcoId = location.data.weather[0].id;
+
+      console.log(hours);
+
+      descriptionWeather.innerHTML = currentDescription;
+      humidity.innerHTML = currentHumidity;
+      windspeed.innerHTML = currentWindspeed;
+
+      forecastIcoId > 200 && forecastIcoId < 232
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-bolt forecast__pic" id="forecast-ico"></i>`)
+        : forecastIcoId > 300 && forecastIcoId < 321
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-rain forecast__pic" id="forecast-ico"></i>`)
+        : forecastIcoId > 500 && forecastIcoId < 504
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-rain forecast__pic" id="forecast-ico"></i>`)
+        : forecastIcoId === 511
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-snowflake forecast__pic" id="forecast-ico"></i>`)
+        : forecastIcoId > 520 && forecastIcoId < 531
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-showers-heavy forecast__pic" id="forecast-ico"></i>`)
+        : forecastIcoId > 600 && forecastIcoId < 622
+        ? (nowForecastIco.innerHTML = `<i class="fa-regular fa-snowflake forecast__pic" id="forecast-ico"></i>`)
+        : forecastIcoId > 701 && forecastIcoId < 771
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-smog forecast__pic" id="forecast-ico"></i>`)
+        : forecastIcoId === 781
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-tornado forecast__pic" id="forecast-ico"></i>`)
+        : forecastIcoId === 800
+        ? hours > 19 || hours < 5
+          ? (nowForecastIco.innerHTML = `<i class="fa-regular fa-moon forecast__pic" id="forecast-ico"></i>`)
+          : (nowForecastIco.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`)
+        : forecastIcoId === 801
+        ? hours > 19 || hours < 5
+          ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-moon forecast__pic" id="forecast-ico"></i>`)
+          : (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-sun forecast__pic" id="forecast-ico"></i>`)
+        : forecastIcoId > 801
+        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud forecast__pic" id="forecast-ico"></i>`)
+        : (nowForecastIco.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`);
     }
 
     axios.get(`${apiUrl}&appid=${apiKey}&units=metric`).then(changeLocation);
@@ -217,7 +259,9 @@ findMeBtn.addEventListener("click", getLocation());
 
   navigator.geolocation.getCurrentPosition(myPosition);
 }
-*/
+
+let findMeBtn = document.getElementById("find-me-btn");
+findMeBtn.addEventListener("click", getLocation);
 
 function tempFar(event) {
   event.preventDefault();
