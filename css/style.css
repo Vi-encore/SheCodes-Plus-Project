@@ -44,8 +44,8 @@ body {
   position: relative;
   z-index: 2;
   height: 100vh;
-  background-color: rgba(255, 74, 74, 0.75);
-  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.119);
+  backdrop-filter: blur(10px);
 }
 .main__weather {
   height: 100%;
@@ -85,6 +85,7 @@ body {
   width: 45px;
   height: 45px;
   display: block;
+  transition: all 200ms ease-in-out;
   filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.2));
 }
 .main__location-ico:hover {
@@ -178,6 +179,9 @@ body {
   font-size: 18px;
   font-weight: 700;
 }
+.forecast__detailed--info--span {
+  color: #006ad4;
+}
 
 .created-text {
   color: #fff;
@@ -186,10 +190,11 @@ body {
 .created--name, .created--repo, .created--host {
   font-weight: 700;
   text-decoration: none;
-  color: #206cb7;
+  color: #ffcc32;
+  transition: all 150ms ease-in-out;
 }
 .created--name:hover, .created--repo:hover, .created--host:hover, .created--name:active, .created--repo:active, .created--host:active {
-  color: #ffcc32;
+  color: #006ad4;
   filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.2));
 }
 

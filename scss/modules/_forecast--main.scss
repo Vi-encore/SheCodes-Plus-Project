@@ -2,12 +2,12 @@
   &__pic {
     font-size: 150px;
     color: transparent;
-background: rgb(254, 254, 254);
--webkit-background-clip: text;
--moz-background-clip: text;
-background-clip: text;
-@include shadow;
-// text-shadow: 0px 2px 2px rgba(10, 10, 10, 0.485);
+    background: rgb(254, 254, 254);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    @include shadow;
+    // text-shadow: 0px 2px 2px rgba(10, 10, 10, 0.485);
     // opacity: 50%;
     // filter: brightness(0) saturate(100%) invert(0%) sepia(53%) saturate(2090%)
     //   hue-rotate(122deg) brightness(146%) contrast(90%);
@@ -35,8 +35,7 @@ background-clip: text;
     font-size: 96px;
     margin: 0;
     // @include hard-shadow
-      //  text-shadow: 1px 1px $grey-trans, -1px -1px $black-lt;
-;
+    //  text-shadow: 1px 1px $grey-trans, -1px -1px $black-lt;
   }
 
   &--deg {
@@ -65,6 +64,10 @@ background-clip: text;
     text-transform: uppercase;
     font-size: 18px;
     font-weight: 700;
+
+    &--span {
+      color: $deep-typed;
+    }
     // @include hard-shadow;
   }
 }
@@ -81,7 +84,8 @@ background-clip: text;
   &--host {
     font-weight: 700;
     text-decoration: none;
-    color: $typed;
+    color: $yellow;
+    transition: all 150ms ease-in-out;
   }
 
   &--name:hover,
@@ -90,7 +94,7 @@ background-clip: text;
   &--name:active,
   &--repo:active,
   &--host:active {
-    color: $yellow;
+    color: $deep-typed;
     @include shadow;
   }
 }

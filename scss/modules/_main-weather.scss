@@ -2,8 +2,10 @@
   position: relative;
   z-index: 2;
   height: 100vh;
-  background-color: $hot;
-  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.119);
+  // background-color: $hot;
+  backdrop-filter: blur(10px);
+
   &__weather {
     height: 100%;
   }
@@ -44,11 +46,13 @@
       transition: all 200ms ease-in-out;
     }
   }
+  
 
   &__location-ico {
     width: 45px;
     height: 45px;
     display: block;
+    transition: all 200ms ease-in-out;
     filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.2));
 
     &:hover {
