@@ -1,19 +1,24 @@
 .forecast {
   &__pic {
-    width: 60px;
-    height: 60px;
-
-    @include hard-shadow;
+    width: 200px;
+    height: 200px;
+    opacity: 30%;
+    filter: brightness(0) saturate(100%) invert(23%) sepia(80%) saturate(3%)
+      hue-rotate(314deg) brightness(93%) contrast(98%)
+      drop-shadow(4px 4px 0.5px rgb(0, 0, 0));
+    // @include hard-shadow;
 
     &:hover {
-      filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.6));
+      // filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.6));
     }
   }
 
   &__city {
-    font-family: $accent-font;
-    font-weight: 700;
+    font-family: $font-num;
+    font-weight: 900;
     font-size: 42px;
+    color: $white;
+    @include hard-shadow;
   }
 
   &--temp,
@@ -22,42 +27,47 @@
   }
 
   &--temp {
-    font-size: 132px;
+    font-size: 96px;
     margin: 0;
-    color: $deep-typed;
     @include hard-shadow
       //  text-shadow: 1px 1px $grey-trans, -1px -1px $black-lt;
 ;
   }
 
   &--deg {
-    font-size: 42px;
+    font-size: 36px;
     margin: 0;
     font-weight: 800;
 
     @include hard-shadow;
   }
 
-  &__descr--wrap {
-    font-size: 24px;
-    font-style: italic;
+  &__today {
+    font-size: 16px;
+    @include hard-shadow;
   }
 
-  &__detailed {
-    background-color: $white-grey-lt;
-    border-radius: 20px;
-    border: 3px solid $typed-trans;
+  &__descr {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: $font-num;
+    @include hard-shadow;
   }
 
   &__detailed--info {
+    font-family: $font-num;
+    text-transform: uppercase;
     font-size: 18px;
-    font-style: italic;
+    font-weight: 700;
+    @include hard-shadow;
   }
 }
 
 .created {
   &-text {
     font-size: 14px;
+    @include hard-shadow;
   }
 
   &--name,

@@ -1,4 +1,5 @@
 /*colors*/
+/*temp*/
 /*font*/
 html {
   overflow: hidden;
@@ -6,6 +7,8 @@ html {
 
 body {
   box-sizing: border-box;
+  color: #fff;
+  font-family: "Sofia Sans Semi Condensed", monospace;
 }
 
 .background {
@@ -41,7 +44,7 @@ body {
   position: relative;
   z-index: 2;
   height: 100vh;
-  background-color: rgba(245, 245, 245, 0.5019607843);
+  background-color: rgba(245, 245, 245, 0.75);
   backdrop-filter: blur(6px);
 }
 .main__weather {
@@ -60,7 +63,7 @@ body {
   font-family: Raleway, monospace;
   font-weight: 700;
   font-size: 36px;
-  color: #206cb7;
+  color: #fff;
   margin: 0;
   text-align: center;
   vertical-align: middle;
@@ -135,49 +138,54 @@ body {
 }
 
 .forecast__pic {
-  width: 60px;
-  height: 60px;
-  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
-}
-.forecast__pic:hover {
-  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.6));
+  width: 200px;
+  height: 200px;
+  opacity: 30%;
+  filter: brightness(0) saturate(100%) invert(23%) sepia(80%) saturate(3%) hue-rotate(314deg) brightness(93%) contrast(98%) drop-shadow(4px 4px 0.5px rgb(0, 0, 0));
 }
 .forecast__city {
-  font-family: "Rubik", monospace;
-  font-weight: 700;
+  font-family: "Sofia Sans Semi Condensed", monospace;
+  font-weight: 900;
   font-size: 42px;
+  color: #fff;
+  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
 .forecast--temp, .forecast--deg {
   font-family: "Sofia Sans Semi Condensed", monospace;
 }
 .forecast--temp {
-  font-size: 132px;
+  font-size: 96px;
   margin: 0;
-  color: #006ad4;
   filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
 .forecast--deg {
-  font-size: 42px;
+  font-size: 36px;
   margin: 0;
   font-weight: 800;
   filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
-.forecast__descr--wrap {
-  font-size: 24px;
-  font-style: italic;
+.forecast__today {
+  font-size: 16px;
+  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
-.forecast__detailed {
-  background-color: rgba(245, 245, 245, 0.5019607843);
-  border-radius: 20px;
-  border: 3px solid rgba(45, 113, 180, 0.4745098039);
+.forecast__descr {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: "Sofia Sans Semi Condensed", monospace;
+  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
 .forecast__detailed--info {
+  font-family: "Sofia Sans Semi Condensed", monospace;
+  text-transform: uppercase;
   font-size: 18px;
-  font-style: italic;
+  font-weight: 700;
+  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
 
 .created-text {
   font-size: 14px;
+  filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.4));
 }
 .created--name, .created--repo, .created--host {
   font-weight: 700;

@@ -2,7 +2,7 @@
   position: relative;
   z-index: 2;
   height: 100vh;
-  background-color: $white-grey-lt;
+  background-color: $snow;
   backdrop-filter: blur(6px);
   &__weather {
     height: 100%;
@@ -23,7 +23,7 @@
     font-family: Raleway, monospace;
     font-weight: 700;
     font-size: 36px;
-    color: $typed;
+    color: $white;
     margin: 0;
     text-align: center;
     vertical-align: middle;

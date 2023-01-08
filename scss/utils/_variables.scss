@@ -4,17 +4,9 @@ $white-grey-lt: #f5f5f580;
 $white-grey-md: #ece8eb;
 $white-grey: #dddbdd;
 
-$cream-lt: #efe6dc;
-$cream-md: #e5dcd1;
-$cream: #dbd2c6;
-
 $sky-lt: #a9bfc9;
 $sky-md: #9fb3bf;
 $sky: #94a6b3;
-
-$ash-lt: #cecece;
-$ash-md: #cdcdcd;
-$ash: #c4c4c4;
 
 $black-lt: #232323;
 $black-md: #181818;
@@ -29,6 +21,15 @@ $typed: #206cb7;
 $deep-typed: #006ad4;
 $typed-trans: #2d71b479;
 
+/*temp*/
+$hot: rgb(239 103 11 / 75%);
+$normal: rgb(79 179 40 / 75%);
+$cold: rgb(60 154 189 / 75%);
+$snow: rgb(245 245 245 / 75%);
+$thunder: rgb(86 86 86 / 75%);
+
 /*font*/
-$accent-font: "Rubik", monospace;
+$accent-font: "Open Sans", monospace;
 $font-num: "Sofia Sans Semi Condensed", monospace;
+
+$color: #42424259;
