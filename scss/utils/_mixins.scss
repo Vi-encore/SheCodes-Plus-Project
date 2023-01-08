@@ -1,5 +1,5 @@
 @mixin shadow {
-  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.3));
 }
 @mixin hard-shadow {
   filter: drop-shadow(-1.3px 1.3px 2px rgba(0, 0, 0, 0.55));

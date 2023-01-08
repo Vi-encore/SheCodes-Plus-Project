@@ -53,7 +53,7 @@ body {
 .main__img-icon {
   width: 70px;
   height: 70px;
-  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.3));
 }
 .main__app {
   border-radius: 20px;
@@ -98,7 +98,7 @@ body {
   position: relative;
   z-index: 2;
   padding: 4px 0;
-  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.3));
 }
 .side__search:after {
   content: "";
@@ -144,7 +144,7 @@ body {
   -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
-  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.3));
 }
 .forecast__city {
   font-family: "Sofia Sans Semi Condensed", monospace;
@@ -160,23 +160,25 @@ body {
   margin: 0;
 }
 .forecast--deg {
-  font-size: 36px;
+  font-size: 42px;
   margin: 0;
   font-weight: 800;
+}
+.forecast--cels:hover, .forecast--farh:hover, .forecast--cels:active, .forecast--farh:active {
+  color: #206cb7;
 }
 .forecast__today {
   font-size: 16px;
 }
 .forecast__descr {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-family: "Sofia Sans Semi Condensed", monospace;
 }
 .forecast__detailed--info {
   font-family: "Sofia Sans Semi Condensed", monospace;
-  text-transform: uppercase;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
 }
 .forecast__detailed--info--span {
@@ -195,9 +197,10 @@ body {
 }
 .created--name:hover, .created--repo:hover, .created--host:hover, .created--name:active, .created--repo:active, .created--host:active {
   color: #006ad4;
-  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.3));
 }
 
-.open {
-  color: #006ad4;
+.picked {
+  color: #ffcc32;
+  filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.3));
 }/*# sourceMappingURL=style.css.map */
