@@ -203,4 +203,12 @@ body {
 .picked {
   color: #ffcc32;
   filter: drop-shadow(4px 4px 21px rgba(0, 0, 0, 0.3));
+}
+
+.side {
+  position: relative;
+  z-index: 2;
+}
+.side__weather-card {
+  background-color: rgba(245, 245, 245, 0.5019607843);
 }/*# sourceMappingURL=style.css.map */

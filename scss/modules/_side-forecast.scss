@@ -1,0 +1,10 @@
+.side {
+    position: relative;
+    z-index: 2;
+
+   
+
+    &__weather-card {
+        background-color: $white-grey-lt;
+    }
+}
