@@ -1,10 +1,29 @@
 .side {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 
-   
+  &__weather-card {
+    background-color: $color-deep;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+  }
 
-    &__weather-card {
-        background-color: $white-grey-lt;
-    }
+ 
+
+  &__icon {
+    font-size: 120px;
+  }
+
+  &__day {
+    font-size: 32px;
+    font-family: $font-num;
+  }
+
+  &__temp {
+    font-size: 24px;
+  }
+
+  &__weather--min {
+    color: $white-grey-lt;
+  }
 }

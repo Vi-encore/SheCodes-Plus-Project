@@ -210,5 +210,20 @@ body {
   z-index: 2;
 }
 .side__weather-card {
-  background-color: rgba(245, 245, 245, 0.5019607843);
+  background-color: rgba(41, 41, 41, 0.4862745098);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+.side__icon {
+  font-size: 120px;
+}
+.side__day {
+  font-size: 32px;
+  font-family: "Sofia Sans Semi Condensed", monospace;
+}
+.side__temp {
+  font-size: 24px;
+}
+.side__weather--min {
+  color: rgba(245, 245, 245, 0.5019607843);
 }/*# sourceMappingURL=style.css.map */
