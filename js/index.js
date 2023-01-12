@@ -89,6 +89,22 @@ function changeDate() {
 
   let currentYear = document.getElementById("forecast-year");
   currentYear.innerHTML = year;
+
+  let nextDay1 = document.querySelector("#side__day--1");
+  let nextDay2 = document.querySelector("#side__day--2");
+  let nextDay3 = document.querySelector("#side__day--3");
+  let nextDay4 = document.querySelector("#side__day--4");
+
+  let changeDay1 = days[day + 1];
+  let changeDay2 = days[day + 2];
+  let changeDay3 = days[day + 3];
+  let changeDay4 = days[day + 4];
+
+  // nextDay1.innerHTML = changeDay1;
+  // nextDay2.innerHTML = changeDay2;
+  // nextDay3.innerHTML = changeDay3;
+  // nextDay4.innerHTML = changeDay4;
+
 }
 
 changeDate();
@@ -299,3 +315,4 @@ function tempCel(event) {
 
 let tempCelc = document.getElementById("forecast--cels");
 tempCelc.addEventListener("click", tempCel);
+
