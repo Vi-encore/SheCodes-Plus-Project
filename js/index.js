@@ -28,7 +28,43 @@ let day = date.getDay();
 let month = date.getMonth();
 let year = date.getFullYear();
 let hours = date.getHours();
-// console.log(typeof month);
+
+function createIcon(iconID, icon) {
+  iconID > 200 && iconID < 232
+    ? (icon.innerHTML = `<i class="fa-solid fa-cloud-bolt forecast__pic" id="forecast-ico"></i>`)
+    : iconID > 300 && iconID < 321
+    ? (icon.innerHTML = `<i class="fa-solid fa-cloud-rain forecast__pic" id="forecast-ico"></i>`)
+    : iconID > 500 && iconID < 504
+    ? (icon.innerHTML = `<i class="fa-solid fa-cloud-rain forecast__pic" id="forecast-ico"></i>`)
+    : iconID === 511
+    ? (icon.innerHTML = `<i class="fa-solid fa-snowflake forecast__pic" id="forecast-ico"></i>`)
+    : iconID > 520 && iconID < 531
+    ? (icon.innerHTML = `<i class="fa-solid fa-cloud-showers-heavy forecast__pic" id="forecast-ico"></i>`)
+    : iconID > 600 && iconID < 622
+    ? (icon.innerHTML = `<i class="fa-regular fa-snowflake forecast__pic" id="forecast-ico"></i>`)
+    : iconID > 701 && iconID < 771
+    ? (icon.innerHTML = `<i class="fa-solid fa-smog forecast__pic" id="forecast-ico"></i>`)
+    : iconID === 781
+    ? (icon.innerHTML = `<i class="fa-solid fa-tornado forecast__pic" id="forecast-ico"></i>`)
+    : iconID === 800
+    ? hours > 19 || hours < 5
+      ? (icon.innerHTML = `<i class="fa-regular fa-moon forecast__pic" id="forecast-ico"></i>`)
+      : (icon.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`)
+    : iconID === 801
+    ? hours > 19 || hours < 5
+      ? (icon.innerHTML = `<i class="fa-solid fa-cloud-moon forecast__pic" id="forecast-ico"></i>`)
+      : (icon.innerHTML = `<i class="fa-solid fa-cloud-sun forecast__pic" id="forecast-ico"></i>`)
+    : iconID > 801
+    ? (icon.innerHTML = `<i class="fa-solid fa-cloud forecast__pic" id="forecast-ico"></i>`)
+    : (icon.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`);
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+
+  return days[day];
+}
 
 function changeBg() {
   let season;
@@ -89,28 +125,116 @@ function changeDate() {
 
   let currentYear = document.getElementById("forecast-year");
   currentYear.innerHTML = year;
-
-  // let nextDate1 = document.querySelector("#side__date--1");
-  // let nextDate2 = document.querySelector("#side__date--2");
-  // let nextDate3 = document.querySelector("#side__date--3");
-  // let nextDate4 = document.querySelector("#side__date--4");
-
-  // let changeDate1 = date.getDate() + 1;
-  // console.log(changeDate1);
-  // changeDate1 < 10 ? (changeDate = `0${changeDate}`) : changeDate;
-  // nextDate1.innerHTML = changeDate1;
-
-  // let changeDate1 = date.getDate() + 2;
-  // changeDate2 < 10 ? (changeDate = `0${changeDate}`) : changeDate;
-  // nextDate1.innerHTML = changeDate1;
-
-  // nextDay1.innerHTML = changeDay1;
-  // nextDay2.innerHTML = changeDay2;
-  // nextDay3.innerHTML = changeDay3;
-  // nextDay4.innerHTML = changeDay4;
 }
 
 changeDate();
+
+function cityDefault() {
+  let defaultCity = "Kyiv";
+  let defaultTemp = document.querySelector("#temp-main");
+  let defaultDescriptionWeather = document.getElementById("forecast--descr");
+  let defaultHumidity = document.getElementById("main-humidity");
+  let defaultWindspeed = document.getElementById("main-windspeed");
+  let defaultForecastIco = document.getElementById("forecast-ico-wrap");
+
+  function showTempDefault(response) {
+    const defaultCurrentTemp = Math.round(response.data.main.temp);
+    const defaultCurrentDescription = response.data.weather[0].description;
+    const defaultCurrentHumidity = response.data.main.humidity;
+    const defaultCurrentWindspeed = response.data.wind.speed;
+    const defaultCurrentForecastIco = response.data.weather[0].id;
+
+    // console.log(defaultCurrentTemp);
+
+    beforeCelc = Math.round(response.data.main.temp);
+
+    defaultCity.innerHTML = `${defaultCity}`;
+    defaultTemp.innerHTML = `${defaultCurrentTemp}`;
+    defaultDescriptionWeather.innerHTML = `${defaultCurrentDescription}`;
+    defaultHumidity.innerHTML = defaultCurrentHumidity;
+    defaultWindspeed.innerHTML = defaultCurrentWindspeed;
+
+    createIcon(defaultCurrentForecastIco, defaultForecastIco); //!!!!!!!
+
+    let lon = response.data.coord.lon.toFixed(2);
+    let lat = response.data.coord.lat.toFixed(2);
+
+    let shecodesKey = `4fa8474b4bc99d703a4c2teao58c4939`;
+    let shecodesApi = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${shecodesKey}&units=metric`;
+
+    // console.log(shecodesApi);
+
+    function showInfo(response) {
+      console.log(response.data.daily);
+      let forecast = response.data.daily;
+
+      let sideGrid = document.querySelector(".side__grid");
+      let sideHTML = "";
+
+      forecast.forEach((tempInfo, index) => {
+        let maxTemp = Math.round(tempInfo.temperature.maximum);
+        let minTemp = Math.round(tempInfo.temperature.minimum);
+
+        if (index > day && index < 5) {
+          sideHTML =
+            sideHTML +
+            `<div
+                            class="side__card col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12"
+                          >
+                            <div
+                              class="side__weather-card my-2 p-2 d-flex flex-column justify-content-between align-items-center"
+                            >
+                              <div class="side__icon--wrap p-4">
+                                <i class="fa-regular fa-sun side__icon"></i>
+                              </div>
+                              <div
+                                class="side__day-of-week d-flex flex-column align-items-center"
+                              >
+                                <p class="side__day m-0" id="side__day--1">${formatDay(
+                                  tempInfo.time
+                                )}</p>
+                                <p class="side__date--full">
+                                  <span class="side__date" id="side__date--1">14</span
+                                  >/<span class="side__month">07</span>/<span
+                                    class="side__year"
+                                    >2023</span
+                                  >
+                                </p>
+                              </div>
+                              <div
+                                class="side__temp w-100 px-4 d-flex flex-row justify-content-between"
+                              >
+                                <div class="side__weather--max">
+                                  <p class="side__max--text">
+                                    ${maxTemp}<span class="degree">°</span>
+                                    
+                                  </p>
+                                </div>
+                                <div class="side__weather--min">
+                                  <p class="side__min--text">
+                                    ${minTemp}<span class="degree">°</span>
+                                   
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>`;
+        }
+      });
+
+      sideGrid.innerHTML = sideHTML;
+    }
+
+    axios.get(shecodesApi).then(showInfo);
+  }
+
+  let apiKey = "a061ec7844e88361e25c005f78e2639f";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${defaultCity}`;
+
+  axios.get(`${apiUrl}&appid=${apiKey}&units=metric`).then(showTempDefault);
+}
+
+cityDefault();
 
 function changeCity() {
   let inputVal = document.getElementById("search-input").value;
@@ -146,33 +270,7 @@ function changeCity() {
       currentHumidity.innerHTML = humidity;
       currentWindspeed.innerHTML = windspeed;
 
-      forecastIco > 200 && forecastIco < 232
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-bolt forecast__pic" id="forecast-ico"></i>`)
-        : forecastIco > 300 && forecastIco < 321
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-rain forecast__pic" id="forecast-ico"></i>`)
-        : forecastIco > 500 && forecastIco < 504
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-rain forecast__pic" id="forecast-ico"></i>`)
-        : forecastIco === 511
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-snowflake forecast__pic" id="forecast-ico"></i>`)
-        : forecastIco > 520 && forecastIco < 531
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-showers-heavy forecast__pic" id="forecast-ico"></i>`)
-        : forecastIco > 600 && forecastIco < 622
-        ? (nowForecastIco.innerHTML = `<i class="fa-regular fa-snowflake forecast__pic" id="forecast-ico"></i>`)
-        : forecastIco > 701 && forecastIco < 771
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-smog forecast__pic" id="forecast-ico"></i>`)
-        : forecastIco === 781
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-tornado forecast__pic" id="forecast-ico"></i>`)
-        : forecastIco === 800
-        ? hours > 19 || hours < 5
-          ? (nowForecastIco.innerHTML = `<i class="fa-regular fa-moon forecast__pic" id="forecast-ico"></i>`)
-          : (nowForecastIco.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`)
-        : forecastIco === 801
-        ? hours > 19 || hours < 5
-          ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-moon forecast__pic" id="forecast-ico"></i>`)
-          : (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-sun forecast__pic" id="forecast-ico"></i>`)
-        : forecastIco > 801
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud forecast__pic" id="forecast-ico"></i>`)
-        : (nowForecastIco.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`);
+      createIcon(forecastIco, nowForecastIco);
     }
   }
 
@@ -197,6 +295,107 @@ function changeCity() {
       console.log(error.config);
     })
     .then(showTemp);
+
+  function displayForecast(response) {
+    //?????
+    let lon = response.data.coord.lon.toFixed(2);
+    let lat = response.data.coord.lat.toFixed(2);
+
+    let sideGrid = document.querySelector(".side__grid");
+    let sideHTML = "";
+
+    days.forEach((day) => {
+      sideHTML =
+        sideHTML +
+        `<div
+                          class="side__card col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12"
+                        >
+                          <div
+                            class="side__weather-card my-2 p-2 d-flex flex-column justify-content-between align-items-center"
+                          >
+                            <div class="side__icon--wrap p-4">
+                              <i class="fa-regular fa-sun side__icon"></i>
+                            </div>
+                            <div
+                              class="side__day-of-week d-flex flex-column align-items-center"
+                            >
+                              <p class="side__day m-0" id="side__day--1">${day}</p>
+                              <p class="side__date--full">
+                                <span class="side__date" id="side__date--1">14</span
+                                >/<span class="side__month">07</span>/<span
+                                  class="side__year"
+                                  >2023</span
+                                >
+                              </p>
+                            </div>
+                            <div
+                              class="side__temp w-100 px-3 d-flex flex-row justify-content-between"
+                            >
+                              <div class="side__weather--max">
+                                <p class="side__max--text">
+                                  14°
+                                  <sup>
+                                    <span class="side--cels picked">C</span>|<span
+                                      class="side--farh"
+                                      >F</span
+                                    >
+                                  </sup>
+                                </p>
+                              </div>
+                              <div class="side__weather--min">
+                                <p class="side__min--text">
+                                  14°
+                                  <sup>
+                                    <span class="side--cels picked">C</span>|<span
+                                      class="side--farh"
+                                      >F</span
+                                    >
+                                  </sup>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>`;
+    });
+
+    sideGrid.innerHTML = sideHTML;
+
+    function getForecast(coordinates) {
+      // let hui = new Date();
+      // let piska = hui.getDay();
+
+      // console.log(coordinates.data.list[0].dt_txt);
+      // let defDay = coordinates.data.list[0].dt_txt;
+      // console.log(defDay);
+
+      // let defDaySplit = defDay.split(" ");
+      // let defDate = defDaySplit[0].split("-");
+
+      // for (let i = 1; 1 < coordinates.data.list.length; i++) {
+      //   defDate.includes(piska)
+      //     ? (defDay = coordinates.data.list[i].dr_txt)
+      //     : defDay;
+
+      //   console.log(defDay);
+      // }
+
+      let change = coordinates.data.list[3].dt_txt;
+      // console.log(change);
+
+      let splitChange = change.split(" ");
+      let splitDate = splitChange[0].split("-");
+      let day = splitDate[2];
+      let month = splitDate[1];
+      let year = splitDate[0];
+      console.log(day, month, year);
+    }
+
+    let newApiUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+    axios.get(newApiUrl).then(getForecast);
+  }
+
+  axios.get(`${apiUrl}&appid=${apiKey}&units=metric`).then(displayForecast);
 }
 let beforeCelc = 0;
 
@@ -238,39 +437,13 @@ function getLocation() {
       let currentWindspeed = location.data.wind.speed;
       let forecastIcoId = location.data.weather[0].id;
 
-      console.log(hours);
+      // console.log(hours);
 
       descriptionWeather.innerHTML = currentDescription;
       humidity.innerHTML = currentHumidity;
       windspeed.innerHTML = currentWindspeed;
 
-      forecastIcoId > 200 && forecastIcoId < 232
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-bolt forecast__pic" id="forecast-ico"></i>`)
-        : forecastIcoId > 300 && forecastIcoId < 321
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-rain forecast__pic" id="forecast-ico"></i>`)
-        : forecastIcoId > 500 && forecastIcoId < 504
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-rain forecast__pic" id="forecast-ico"></i>`)
-        : forecastIcoId === 511
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-snowflake forecast__pic" id="forecast-ico"></i>`)
-        : forecastIcoId > 520 && forecastIcoId < 531
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-showers-heavy forecast__pic" id="forecast-ico"></i>`)
-        : forecastIcoId > 600 && forecastIcoId < 622
-        ? (nowForecastIco.innerHTML = `<i class="fa-regular fa-snowflake forecast__pic" id="forecast-ico"></i>`)
-        : forecastIcoId > 701 && forecastIcoId < 771
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-smog forecast__pic" id="forecast-ico"></i>`)
-        : forecastIcoId === 781
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-tornado forecast__pic" id="forecast-ico"></i>`)
-        : forecastIcoId === 800
-        ? hours > 19 || hours < 5
-          ? (nowForecastIco.innerHTML = `<i class="fa-regular fa-moon forecast__pic" id="forecast-ico"></i>`)
-          : (nowForecastIco.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`)
-        : forecastIcoId === 801
-        ? hours > 19 || hours < 5
-          ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-moon forecast__pic" id="forecast-ico"></i>`)
-          : (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud-sun forecast__pic" id="forecast-ico"></i>`)
-        : forecastIcoId > 801
-        ? (nowForecastIco.innerHTML = `<i class="fa-solid fa-cloud forecast__pic" id="forecast-ico"></i>`)
-        : (nowForecastIco.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`);
+      createIcon(forecastIcoId, nowForecastIco);
     }
 
     axios.get(`${apiUrl}&appid=${apiKey}&units=metric`).then(changeLocation);
@@ -286,11 +459,14 @@ function tempFar(event) {
   event.preventDefault();
   let tempFar = document.getElementById("forecast--farh");
   let tempCel = document.getElementById("forecast--cels");
+
   let mainTemp = document.getElementById("temp-main");
+
   let mainTempValue = mainTemp.firstChild.nodeValue;
   //   console.log(mainTempValue);
   //   console.log(typeof mainTemp);
   mainTempValue = (beforeCelc * 1.8 + 32).toFixed();
+
   //console.log(mainTempValue);
 
   mainTemp.innerText = `${mainTempValue}`;
@@ -306,6 +482,7 @@ function tempCel(event) {
   event.preventDefault();
   let tempFar = document.getElementById("forecast--farh");
   let tempCel = document.getElementById("forecast--cels");
+
   let mainTemp = document.getElementById("temp-main");
   let mainTempValue = mainTemp.firstChild.nodeValue;
 
