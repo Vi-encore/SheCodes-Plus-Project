@@ -59,6 +59,10 @@ function createIcon(iconID, icon) {
     : (icon.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`);
 }
 
+// function changeSideIco(icoDescr, iconWrap) {
+//   icoDescr;
+// }
+
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -174,6 +178,7 @@ function cityDefault() {
       forecast.forEach((tempInfo, index) => {
         let maxTemp = Math.round(tempInfo.temperature.maximum);
         let minTemp = Math.round(tempInfo.temperature.minimum);
+        console.log(tempInfo.condition.description);
 
         if (index > day && index < 5) {
           sideHTML =
@@ -193,12 +198,8 @@ function cityDefault() {
                                 <p class="side__day m-0" id="side__day--1">${formatDay(
                                   tempInfo.time
                                 )}</p>
-                                <p class="side__date--full">
-                                  <span class="side__date" id="side__date--1">14</span
-                                  >/<span class="side__month">07</span>/<span
-                                    class="side__year"
-                                    >2023</span
-                                  >
+                                <p class="side__weather-description m-0">
+                                  ${tempInfo.condition.description}
                                 </p>
                               </div>
                               <div
@@ -206,13 +207,13 @@ function cityDefault() {
                               >
                                 <div class="side__weather--max">
                                   <p class="side__max--text">
-                                    ${maxTemp}<span class="degree">°</span>
+                                   <span class="side__max--temp">${maxTemp}</span> °
                                     
                                   </p>
                                 </div>
                                 <div class="side__weather--min">
                                   <p class="side__min--text">
-                                    ${minTemp}<span class="degree">°</span>
+                                    <span class="side__min--temp">${minTemp}</span> °
                                    
                                   </p>
                                 </div>
@@ -460,13 +461,42 @@ function tempFar(event) {
   let tempFar = document.getElementById("forecast--farh");
   let tempCel = document.getElementById("forecast--cels");
 
-  let mainTemp = document.getElementById("temp-main");
+  let sideMaxWrap = document.querySelectorAll(".side__max--text");
+  let sideMinWrap = document.querySelectorAll(".side__min--text");
+  // console.log(sideMaxWrap);
 
+  let mainTemp = document.getElementById("temp-main");
   let mainTempValue = mainTemp.firstChild.nodeValue;
   //   console.log(mainTempValue);
   //   console.log(typeof mainTemp);
   mainTempValue = (beforeCelc * 1.8 + 32).toFixed();
 
+  let tempNextMax = document.querySelectorAll(".side__max--temp");
+  let tempNextMin = document.querySelectorAll(".side__min--temp");
+
+  // let shecodesKey = `4fa8474b4bc99d703a4c2teao58c4939`;
+  // let shecodesApi = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${shecodesKey}&units=metric`;
+
+  // function changeTempCard(response) {
+  //   console.log(response);
+  // }
+
+  // axios.get(shecodesApi).then(changeTempCard);
+
+  // console.log(tempNextMin);
+  // tempNextMax.forEach((element) => {
+  //   let maxTempValue = element.firstChild.nodeValue;
+  //   maxTempValue = (maxTempValue * 1.8 + 32).toFixed();
+  //   // tempNextMax.innerHTML = `${maxTempValue}`;
+  //   element.textContent = maxTempValue;
+  //   console.log(element.textContent);
+  // });
+
+  // tempNextMin.forEach((element) => {
+  //   let minTempValue = element.firstChild.nodeValue;
+  //   minTempValue = (minTempValue * 1.8 + 32).toFixed();
+  //   element.textContent = minTempValue;
+  // });
   //console.log(mainTempValue);
 
   mainTemp.innerText = `${mainTempValue}`;
@@ -482,6 +512,26 @@ function tempCel(event) {
   event.preventDefault();
   let tempFar = document.getElementById("forecast--farh");
   let tempCel = document.getElementById("forecast--cels");
+
+  let sideMaxWrap = document.querySelectorAll(".side__max--text");
+  let sideMinWrap = document.querySelectorAll(".side__min--text");
+
+  let tempNextMax = document.querySelectorAll(".side__max--temp");
+  let tempNextMin = document.querySelectorAll(".side__min--temp");
+
+  // tempNextMax.forEach((element) => {
+  //   console.log(element);
+  //   let maxTempValue = element.firstChild.nodeValue;
+  //   maxTempValue = ((maxTempValue - 32) * 0.5556).toFixed();
+  //   element.textContent = maxTempValue;
+  // });
+
+  // tempNextMin.forEach((element) => {
+  //   console.log(element);
+  //   let minTempValue = element.firstChild.nodeValue;
+  //   minTempValue = ((minTempValue - 32) * 0.5556).toFixed();
+  //   element.textContent = minTempValue;
+  // });
 
   let mainTemp = document.getElementById("temp-main");
   let mainTempValue = mainTemp.firstChild.nodeValue;

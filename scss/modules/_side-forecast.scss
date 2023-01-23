@@ -24,4 +24,10 @@
   &__weather--min {
     color: $white-grey-lt;
   }
+
+  &__weather-description {
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 700;
+  }
 }

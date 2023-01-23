@@ -226,4 +226,9 @@ body {
 }
 .side__weather--min {
   color: rgba(245, 245, 245, 0.5019607843);
+}
+.side__weather-description {
+  text-transform: capitalize;
+  font-size: 18px;
+  font-weight: 700;
 }/*# sourceMappingURL=style.css.map */
