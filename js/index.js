@@ -59,6 +59,36 @@ function createIcon(iconID, icon) {
     : (icon.innerHTML = `<i class="fa-regular fa-sun forecast__pic" id="forecast-ico"></i>`);
 }
 
+function changeIcoNext(apiDescr) {
+  let icon;
+  apiDescr === "mist-day" || apiDescr === "mist-night"
+    ? (icon =
+        '<i class="fa-solid fa-smog forecast__pic side__icon" id="forecast-ico"></i>')
+    : apiDescr === "snow-day" || apiDescr === "snow-night"
+    ? (icon = '<i class="fa-regular fa-snowflake side__icon"></i>')
+    : apiDescr === "thunderstorm-day" || apiDescr === "thunderstorm-night"
+    ? (icon = '<i class="fa-solid fa-cloud-bolt side__icon"></i>')
+    : apiDescr === "rain-day" || apiDescr === "rain-night"
+    ? (icon = '<i class="fa-solid fa-cloud-rain side__icon"></i>')
+    : apiDescr === "shower-rain-day" || apiDescr === "shower-rain-night"
+    ? (icon = '<i class="fa-solid fa-cloud-showers-heavy side__icon"></i>')
+    : apiDescr === "broken-clouds-day" ||
+      apiDescr === "broken-clouds-night" ||
+      apiDescr === "scattered-clouds-day" ||
+      apiDescr === "scattered-clouds-night"
+    ? (icon = '<i class="fa-solid fa-cloud side__icon"></i>')
+    : apiDescr === "few-clouds-day" || apiDescr === "few-clouds-night"
+    ? hours > 19 || hours < 5
+      ? (icon =
+          '<i class="fa-solid fa-cloud-moon side__icon" id="forecast-ico"></i>')
+      : (icon =
+          '<i class="fa-solid fa-cloud-sun side__icon" id="forecast-ico"></i>')
+    : hours > 19 || hours < 5
+    ? (icon = '<i class="fa-regular fa-moon side__icon" id="forecast-ico"></i>')
+    : (icon = '<i class="fa-regular fa-sun side__icon" id="forecast-ico"></i>');
+  return icon;
+}
+
 // function changeSideIco(icoDescr, iconWrap) {
 //   icoDescr;
 // }
@@ -141,6 +171,11 @@ function cityDefault() {
   let defaultWindspeed = document.getElementById("main-windspeed");
   let defaultForecastIco = document.getElementById("forecast-ico-wrap");
 
+  let picked = document.querySelector(".forecast--cels");
+  picked.classList.add("picked");
+  let notPicked = document.querySelector(".forecast--farh");
+  notPicked.classList.remove("picked");
+
   function showTempDefault(response) {
     const defaultCurrentTemp = Math.round(response.data.main.temp);
     const defaultCurrentDescription = response.data.weather[0].description;
@@ -169,7 +204,6 @@ function cityDefault() {
     // console.log(shecodesApi);
 
     function showInfo(response) {
-      console.log(response.data.daily);
       let forecast = response.data.daily;
 
       let sideGrid = document.querySelector(".side__grid");
@@ -178,9 +212,11 @@ function cityDefault() {
       forecast.forEach((tempInfo, index) => {
         let maxTemp = Math.round(tempInfo.temperature.maximum);
         let minTemp = Math.round(tempInfo.temperature.minimum);
-        console.log(tempInfo.condition.description);
 
-        if (index > day && index < 5) {
+        let descript = tempInfo.condition.icon;
+        let icon = changeIcoNext(descript);
+
+        if (index < day && index < 4) {
           sideHTML =
             sideHTML +
             `<div
@@ -190,7 +226,7 @@ function cityDefault() {
                               class="side__weather-card my-2 p-2 d-flex flex-column justify-content-between align-items-center"
                             >
                               <div class="side__icon--wrap p-4">
-                                <i class="fa-regular fa-sun side__icon"></i>
+                                ${icon}
                               </div>
                               <div
                                 class="side__day-of-week d-flex flex-column align-items-center"
@@ -207,13 +243,13 @@ function cityDefault() {
                               >
                                 <div class="side__weather--max">
                                   <p class="side__max--text">
-                                   <span class="side__max--temp">${maxTemp}</span> °
+                                   <span class="side__max--temp celc-active">${maxTemp}</span> °
                                     
                                   </p>
                                 </div>
                                 <div class="side__weather--min">
                                   <p class="side__min--text">
-                                    <span class="side__min--temp">${minTemp}</span> °
+                                    <span class="side__min--temp celc-active">${minTemp}</span> °
                                    
                                   </p>
                                 </div>
@@ -246,10 +282,16 @@ function changeCity() {
   let currentWindspeed = document.getElementById("main-windspeed");
   let nowForecastIco = document.getElementById("forecast-ico-wrap");
 
+  let picked = document.querySelector(".forecast--cels");
+  picked.classList.add("picked");
+  let notPicked = document.querySelector(".forecast--farh");
+  notPicked.classList.remove("picked");
+  // let degree = document.querySelector('.forecast--celc');
+  // degree.classList.add('picked')
+
   let foundCity = inputVal.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
     letter.toUpperCase()
   );
-  console.log(foundCity);
 
   if (inputVal === "") {
     currentCity.innerHTML = "Unknown city";
@@ -264,7 +306,6 @@ function changeCity() {
 
       beforeCelc = Math.round(response.data.main.temp);
 
-      console.log(forecastIco);
       currentCity.innerHTML = `${foundCity}`;
       mainTemp.innerHTML = `${currentTemp}`;
       descriptionWeather.innerHTML = `${currentDescription}`;
@@ -298,106 +339,79 @@ function changeCity() {
     .then(showTemp);
 
   function displayForecast(response) {
-    //?????
     let lon = response.data.coord.lon.toFixed(2);
     let lat = response.data.coord.lat.toFixed(2);
 
     let sideGrid = document.querySelector(".side__grid");
     let sideHTML = "";
+    let shecodesKey = `4fa8474b4bc99d703a4c2teao58c4939`;
+    let shecodesApi = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${shecodesKey}&units=metric`;
 
-    days.forEach((day) => {
-      sideHTML =
-        sideHTML +
-        `<div
-                          class="side__card col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12"
-                        >
-                          <div
-                            class="side__weather-card my-2 p-2 d-flex flex-column justify-content-between align-items-center"
+    function showInfo(response) {
+      let forecast = response.data.daily;
+
+      let sideGrid = document.querySelector(".side__grid");
+      let sideHTML = "";
+
+      forecast.forEach((tempInfo, index) => {
+        let maxTemp = Math.round(tempInfo.temperature.maximum);
+        let minTemp = Math.round(tempInfo.temperature.minimum);
+
+        let descript = tempInfo.condition.icon;
+        let icon = changeIcoNext(descript);
+
+        if (index < day && index < 4) {
+          sideHTML =
+            sideHTML +
+            `<div
+                            class="side__card col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12"
                           >
-                            <div class="side__icon--wrap p-4">
-                              <i class="fa-regular fa-sun side__icon"></i>
-                            </div>
                             <div
-                              class="side__day-of-week d-flex flex-column align-items-center"
+                              class="side__weather-card my-2 p-2 d-flex flex-column justify-content-between align-items-center"
                             >
-                              <p class="side__day m-0" id="side__day--1">${day}</p>
-                              <p class="side__date--full">
-                                <span class="side__date" id="side__date--1">14</span
-                                >/<span class="side__month">07</span>/<span
-                                  class="side__year"
-                                  >2023</span
-                                >
-                              </p>
-                            </div>
-                            <div
-                              class="side__temp w-100 px-3 d-flex flex-row justify-content-between"
-                            >
-                              <div class="side__weather--max">
-                                <p class="side__max--text">
-                                  14°
-                                  <sup>
-                                    <span class="side--cels picked">C</span>|<span
-                                      class="side--farh"
-                                      >F</span
-                                    >
-                                  </sup>
+                              <div class="side__icon--wrap p-4">
+                                ${icon}
+                              </div>
+                              <div
+                                class="side__day-of-week d-flex flex-column align-items-center"
+                              >
+                                <p class="side__day m-0" id="side__day--1">${formatDay(
+                                  tempInfo.time
+                                )}</p>
+                                <p class="side__weather-description m-0">
+                                  ${tempInfo.condition.description}
                                 </p>
                               </div>
-                              <div class="side__weather--min">
-                                <p class="side__min--text">
-                                  14°
-                                  <sup>
-                                    <span class="side--cels picked">C</span>|<span
-                                      class="side--farh"
-                                      >F</span
-                                    >
-                                  </sup>
-                                </p>
+                              <div
+                                class="side__temp w-100 px-4 d-flex flex-row justify-content-between"
+                              >
+                                <div class="side__weather--max">
+                                  <p class="side__max--text">
+                                   <span class="side__max--temp celc-active">${maxTemp}</span> °
+                                    
+                                  </p>
+                                </div>
+                                <div class="side__weather--min">
+                                  <p class="side__min--text">
+                                    <span class="side__min--temp celc-active">${minTemp}</span> °
+                                   
+                                  </p>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </div>`;
-    });
+                          </div>`;
+        }
+      });
 
-    sideGrid.innerHTML = sideHTML;
-
-    function getForecast(coordinates) {
-      // let hui = new Date();
-      // let piska = hui.getDay();
-
-      // console.log(coordinates.data.list[0].dt_txt);
-      // let defDay = coordinates.data.list[0].dt_txt;
-      // console.log(defDay);
-
-      // let defDaySplit = defDay.split(" ");
-      // let defDate = defDaySplit[0].split("-");
-
-      // for (let i = 1; 1 < coordinates.data.list.length; i++) {
-      //   defDate.includes(piska)
-      //     ? (defDay = coordinates.data.list[i].dr_txt)
-      //     : defDay;
-
-      //   console.log(defDay);
-      // }
-
-      let change = coordinates.data.list[3].dt_txt;
-      // console.log(change);
-
-      let splitChange = change.split(" ");
-      let splitDate = splitChange[0].split("-");
-      let day = splitDate[2];
-      let month = splitDate[1];
-      let year = splitDate[0];
-      console.log(day, month, year);
+      sideGrid.innerHTML = sideHTML;
     }
 
-    let newApiUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
-    axios.get(newApiUrl).then(getForecast);
+    axios.get(shecodesApi).then(showInfo);
   }
 
   axios.get(`${apiUrl}&appid=${apiKey}&units=metric`).then(displayForecast);
 }
+
 let beforeCelc = 0;
 
 document.getElementById("search-input").addEventListener("keydown", (event) => {
@@ -408,10 +422,13 @@ document.getElementById("search-input").addEventListener("keydown", (event) => {
 });
 
 function getLocation() {
+  let picked = document.querySelector(".forecast--cels");
+  picked.classList.add("picked");
+  let notPicked = document.querySelector(".forecast--farh");
+  notPicked.classList.remove("picked");
   function myPosition(position) {
     let lat = position.coords.latitude.toFixed(2);
     let lon = position.coords.longitude.toFixed(2);
-    console.log(lat, lon);
 
     let apiKey = "a061ec7844e88361e25c005f78e2639f";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}`;
@@ -445,6 +462,72 @@ function getLocation() {
       windspeed.innerHTML = currentWindspeed;
 
       createIcon(forecastIcoId, nowForecastIco);
+
+      let sideGrid = document.querySelector(".side__grid");
+      let sideHTML = "";
+      let shecodesKey = `4fa8474b4bc99d703a4c2teao58c4939`;
+      let shecodesApi = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${shecodesKey}&units=metric`;
+
+      function showInfo(response) {
+        let forecast = response.data.daily;
+
+        let sideGrid = document.querySelector(".side__grid");
+        let sideHTML = "";
+
+        forecast.forEach((tempInfo, index) => {
+          let maxTemp = Math.round(tempInfo.temperature.maximum);
+          let minTemp = Math.round(tempInfo.temperature.minimum);
+
+          let descript = tempInfo.condition.icon;
+          let icon = changeIcoNext(descript);
+
+          if (index < day && index < 4) {
+            sideHTML =
+              sideHTML +
+              `<div
+                            class="side__card col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12"
+                          >
+                            <div
+                              class="side__weather-card my-2 p-2 d-flex flex-column justify-content-between align-items-center"
+                            >
+                              <div class="side__icon--wrap p-4">
+                                ${icon}
+                              </div>
+                              <div
+                                class="side__day-of-week d-flex flex-column align-items-center"
+                              >
+                                <p class="side__day m-0" id="side__day--1">${formatDay(
+                                  tempInfo.time
+                                )}</p>
+                                <p class="side__weather-description m-0">
+                                  ${tempInfo.condition.description}
+                                </p>
+                              </div>
+                              <div
+                                class="side__temp w-100 px-4 d-flex flex-row justify-content-between"
+                              >
+                                <div class="side__weather--max">
+                                  <p class="side__max--text">
+                                   <span class="side__max--temp celc-active">${maxTemp}</span> °
+                                    
+                                  </p>
+                                </div>
+                                <div class="side__weather--min">
+                                  <p class="side__min--text">
+                                    <span class="side__min--temp celc-active">${minTemp}</span> °
+                                   
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>`;
+          }
+        });
+
+        sideGrid.innerHTML = sideHTML;
+      }
+
+      axios.get(shecodesApi).then(showInfo);
     }
 
     axios.get(`${apiUrl}&appid=${apiKey}&units=metric`).then(changeLocation);
@@ -461,43 +544,41 @@ function tempFar(event) {
   let tempFar = document.getElementById("forecast--farh");
   let tempCel = document.getElementById("forecast--cels");
 
-  let sideMaxWrap = document.querySelectorAll(".side__max--text");
-  let sideMinWrap = document.querySelectorAll(".side__min--text");
-  // console.log(sideMaxWrap);
-
-  let mainTemp = document.getElementById("temp-main");
-  let mainTempValue = mainTemp.firstChild.nodeValue;
-  //   console.log(mainTempValue);
-  //   console.log(typeof mainTemp);
-  mainTempValue = (beforeCelc * 1.8 + 32).toFixed();
-
   let tempNextMax = document.querySelectorAll(".side__max--temp");
   let tempNextMin = document.querySelectorAll(".side__min--temp");
 
-  // let shecodesKey = `4fa8474b4bc99d703a4c2teao58c4939`;
-  // let shecodesApi = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${shecodesKey}&units=metric`;
+  // if (tempNextMin.classList.contains(active)) {
+  //   for (let i = 0; i < tempNextMin.length; i++) {
+  //     let temp = +tempNextMin[i];
+  //     tempNextMin[i].innerText = `${temp}`;
+  //   }
+  // } else {
 
-  // function changeTempCard(response) {
-  //   console.log(response);
+  for (let i = 0; i < tempNextMin.length; i++) {
+    tempNextMin[i].classList.contains("celc-active") &&
+      tempNextMin[i].classList.remove("celc-active");
+
+    tempNextMax[i].classList.contains("celc-active") &&
+      tempNextMax[i].classList.remove("celc-active");
+
+    if (!tempNextMin[i].classList.contains("farh-active")) {
+      let temp = +tempNextMin[i].innerHTML * 1.8 + 32;
+      tempNextMin[i].innerText = `${temp.toFixed()}`;
+      tempNextMin[i].classList.add("farh-active");
+    }
+
+    if (!tempNextMax[i].classList.contains("farh-active")) {
+      let temp = +tempNextMax[i].innerHTML * 1.8 + 32;
+      tempNextMax[i].innerText = `${temp.toFixed()}`;
+      tempNextMax[i].classList.add("farh-active");
+    }
+  }
   // }
 
-  // axios.get(shecodesApi).then(changeTempCard);
+  let mainTemp = document.getElementById("temp-main");
+  let mainTempValue = mainTemp.firstChild.nodeValue;
 
-  // console.log(tempNextMin);
-  // tempNextMax.forEach((element) => {
-  //   let maxTempValue = element.firstChild.nodeValue;
-  //   maxTempValue = (maxTempValue * 1.8 + 32).toFixed();
-  //   // tempNextMax.innerHTML = `${maxTempValue}`;
-  //   element.textContent = maxTempValue;
-  //   console.log(element.textContent);
-  // });
-
-  // tempNextMin.forEach((element) => {
-  //   let minTempValue = element.firstChild.nodeValue;
-  //   minTempValue = (minTempValue * 1.8 + 32).toFixed();
-  //   element.textContent = minTempValue;
-  // });
-  //console.log(mainTempValue);
+  mainTempValue = (beforeCelc * 1.8 + 32).toFixed();
 
   mainTemp.innerText = `${mainTempValue}`;
   tempFar.classList.add("picked");
@@ -513,25 +594,8 @@ function tempCel(event) {
   let tempFar = document.getElementById("forecast--farh");
   let tempCel = document.getElementById("forecast--cels");
 
-  let sideMaxWrap = document.querySelectorAll(".side__max--text");
-  let sideMinWrap = document.querySelectorAll(".side__min--text");
-
   let tempNextMax = document.querySelectorAll(".side__max--temp");
   let tempNextMin = document.querySelectorAll(".side__min--temp");
-
-  // tempNextMax.forEach((element) => {
-  //   console.log(element);
-  //   let maxTempValue = element.firstChild.nodeValue;
-  //   maxTempValue = ((maxTempValue - 32) * 0.5556).toFixed();
-  //   element.textContent = maxTempValue;
-  // });
-
-  // tempNextMin.forEach((element) => {
-  //   console.log(element);
-  //   let minTempValue = element.firstChild.nodeValue;
-  //   minTempValue = ((minTempValue - 32) * 0.5556).toFixed();
-  //   element.textContent = minTempValue;
-  // });
 
   let mainTemp = document.getElementById("temp-main");
   let mainTempValue = mainTemp.firstChild.nodeValue;
@@ -541,6 +605,26 @@ function tempCel(event) {
 
   tempCel.classList.add("picked");
   tempFar.classList.contains("picked") && tempFar.classList.remove("picked");
+
+  for (let i = 0; i < tempNextMax.length; i++) {
+    tempNextMax[i].classList.contains("farh-active") &&
+      tempNextMax[i].classList.remove("farh-active");
+
+    tempNextMin[i].classList.contains("farh-active") &&
+      tempNextMin[i].classList.remove("farh-active");
+
+    if (!tempNextMax[i].classList.contains("celc-active")) {
+      let temp = (+tempNextMax[i].innerHTML - 32) / 1.8;
+      tempNextMax[i].innerText = `${temp.toFixed()}`;
+      tempNextMax[i].classList.add("celc-active");
+    }
+
+    if (!tempNextMin[i].classList.contains("celc-active")) {
+      let temp = (+tempNextMin[i].innerHTML - 32) / 1.8;
+      tempNextMin[i].innerText = `${temp.toFixed()}`;
+      tempNextMin[i].classList.add("celc-active");
+    }
+  }
 }
 
 let tempCelc = document.getElementById("forecast--cels");
