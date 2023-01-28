@@ -154,18 +154,22 @@ body {
 }
 .forecast--temp, .forecast--deg {
   font-family: "Sofia Sans Semi Condensed", monospace;
+  cursor: default;
 }
 .forecast--temp {
   font-size: 96px;
   margin: 0;
+  cursor: default;
 }
 .forecast--deg {
   font-size: 42px;
   margin: 0;
   font-weight: 800;
+  cursor: default;
 }
 .forecast--cels:hover, .forecast--farh:hover, .forecast--cels:active, .forecast--farh:active {
   color: #206cb7;
+  cursor: default;
 }
 .forecast__today {
   font-size: 16px;
