@@ -216,7 +216,7 @@ function cityDefault() {
         let descript = tempInfo.condition.icon;
         let icon = changeIcoNext(descript);
 
-        if (index > day && index < 6) {
+        if (index >= day && index < 5) {
           sideHTML =
             sideHTML +
             `<div
@@ -360,7 +360,7 @@ function changeCity() {
         let descript = tempInfo.condition.icon;
         let icon = changeIcoNext(descript);
 
-        if (index > day && index < 6) {
+        if (index >= day && index < 5) {
           sideHTML =
             sideHTML +
             `<div
@@ -481,7 +481,7 @@ function getLocation() {
           let descript = tempInfo.condition.icon;
           let icon = changeIcoNext(descript);
 
-          if (index < day && index < 6) {
+          if (index >= day && index < 5) {
             sideHTML =
               sideHTML +
               `<div
